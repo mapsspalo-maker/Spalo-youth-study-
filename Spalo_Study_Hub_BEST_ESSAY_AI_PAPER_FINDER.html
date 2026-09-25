@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spalo G11 & G12 Study Hub</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:white;padding:28px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:30px} header p{margin:6px 0}
+nav{position:sticky;top:0;z-index:5;background:white;padding:10px;box-shadow:0 2px 8px #0002;display:flex;gap:8px;overflow:auto}
+button,.btn{border:0;border-radius:10px;padding:10px 14px;background:#2563eb;color:white;font-weight:bold;cursor:pointer}
+nav button{white-space:nowrap}
+.container{max-width:1100px;margin:auto;padding:18px}
+.card{background:white;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 15px #0001}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.subject{border-left:5px solid #2563eb}
+input,select{width:100%;padding:12px;border:1px solid #ccd3df;border-radius:10px;margin:6px 0 12px;font-size:16px}
+.lesson{display:none}.lesson.active{display:block}
+details{margin:10px 0;padding:12px;background:#f8fafc;border-radius:10px}
+summary{font-weight:bold;cursor:pointer}
+.quiz{padding:15px;background:#eef4ff;border-radius:12px;margin:12px 0}
+.option{display:block;background:white;color:#172033;text-align:left;width:100%;margin:6px 0;border:1px solid #ccd3df}
+.correct{background:#dcfce7!important;border-color:#16a34a!important}
+.wrong{background:#fee2e2!important;border-color:#dc2626!important}
+.score{font-size:20px;font-weight:bold}
+footer{text-align:center;padding:25px;color:#667085}
+.small{font-size:13px;color:#667085}.tag{display:inline-block;padding:5px 8px;background:#dbeafe;border-radius:20px;margin:3px;font-size:12px}
+
+.math-solver{background:linear-gradient(135deg,#eef4ff,#ffffff);border:2px solid #2563eb}
+.math-input{font-size:20px!important}
+.solution-step{background:#f8fafc;border-left:4px solid #2563eb;padding:12px;margin:8px 0;border-radius:8px}
+.answer-box{background:#dcfce7;border:1px solid #16a34a;padding:15px;border-radius:12px;font-size:22px;font-weight:bold}
+
+.testbook-card{background:linear-gradient(135deg,#ffffff,#eef4ff);border:1px solid #cbd5e1}
+.test-question{background:#fff;border:1px solid #dbe3ef;border-radius:14px;padding:16px;margin:12px 0}
+.test-option{display:block;width:100%;text-align:left;background:#f8fafc;color:#172033;border:1px solid #cbd5e1;margin:7px 0}
+.test-option.correct{background:#dcfce7!important;border-color:#16a34a!important}
+.test-option.wrong{background:#fee2e2!important;border-color:#dc2626!important}
+.test-result{font-size:21px;font-weight:bold;padding:14px;border-radius:12px;background:#eef4ff}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#dbeafe;margin:3px;font-size:12px;font-weight:bold}
+
+.ask-card{background:linear-gradient(135deg,#eef4ff,#ffffff);border:2px solid #2563eb}
+.research-card{background:linear-gradient(135deg,#f8fafc,#ffffff);border:1px solid #94a3b8}
+.oxford-card{background:linear-gradient(135deg,#eff6ff,#ffffff);border:2px solid #1d4ed8}
+.answer-area{white-space:pre-wrap;line-height:1.65;background:#f8fafc;border-radius:12px;padding:15px;margin-top:12px}
+.source-chip{display:inline-block;padding:6px 9px;background:#e0e7ff;border-radius:999px;margin:3px;font-size:12px}
+
+.essay-card{background:linear-gradient(135deg,#fff7ed,#ffffff);border:2px solid #f97316}
+.essay-box{background:#fff;border:1px solid #fed7aa;border-radius:14px;padding:16px;margin:12px 0}
+.essay-answer{white-space:pre-wrap;line-height:1.75;background:#f8fafc;border-radius:12px;padding:18px}
+
+.essay-ai{border:2px solid #7c3aed}
+.essay-ai textarea{width:100%;min-height:130px;padding:12px;border-radius:12px;border:1px solid #ddd;font:inherit}
+.essay-ai select{width:100%;padding:10px;border-radius:10px;margin:6px 0 12px}
+
+/* Student Papers */
+.paper-card{background:linear-gradient(135deg,#ffffff,#eff6ff);border:1px solid #bfdbfe}
+.paper-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.paper-actions a{display:inline-block;text-decoration:none}
+.paper-note{background:#fff7ed;border-left:4px solid #f97316;padding:12px;border-radius:10px}
+
+</style>
+</head>
+<body>
+
+<header>
+<h1>📚 Spalo Youth Study & Future Hub</h1>
+<p>Grade 10 • Grade 11 • Grade 12</p>
+<p class="small" style="color:#dbeafe">Learn • Practise • Build Skills • Prepare for Your Future</p>
+</header>
+
+<nav>
+<button onclick="show('home')">🏠 Home</button>
+<button onclick="show('subjects')">📚 Subjects</button><button onclick="show('papers')">📄 Student Papers</button>
+<button onclick="show('future')">💰 Future Skills</button>
+<button onclick="show('lessons')">📝 Lessons</button><button onclick="show('library')">📖 Textbooks</button>
+<button onclick="show('quiz')">❓ Quiz</button><button onclick="show('testbooks')">🧪 Test Books</button><button onclick="show('essays')">✍️ Essays</button><button onclick="show('essayai')">🤖 Essay AI</button><button onclick="show('ask')">🤖 Ask Spalo</button><button onclick="show('studentAi')">✨ Student AI</button><button onclick="show('research')">🔎 Research</button><button onclick="show('oxford')">📘 Oxford</button>
+<button onclick="show('tools')">🧠 Study Tools</button><button onclick="show('mathsolver')">🧮 Math Solver</button>
+</nav>
+
+<main class="container">
+
+<section id="home" class="lesson active">
+<div class="card">
+<h2>👋 Welcome to Spalo Youth Study & Future Hub</h2>
+<div class="card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #2563eb">
+<h2>🎓 Your Learning Starts Here</h2>
+<p style="font-size:20px"><strong>“With this website, you won't have to keep paying for study materials again.”</strong></p>
+<p>My name is <strong>Sbongumusa Maphanga</strong>, known as <strong>Spalo</strong>.</p>
+<p>I created this platform to give young people a place to study, practise, revise and build useful skills using their phones or computers.</p>
+<p><strong>Study smarter. Practise more. Build your future.</strong></p>
+<p class="small">This website is designed as a free learning resource. It does not replace your school, teacher or prescribed textbook, and some subjects may require official curriculum materials.</p>
+</div>
+<h3>About Spalo</h3>
+<p>My name is <strong>Sbongumusa Maphanga, known as Spalo</strong>. I created this learning project because I believe young people deserve access to useful knowledge, practical skills and encouragement to build a better future.</p>
+<p>This website brings school learning and future-focused skills together in one place. It is designed to help learners understand their subjects, practise questions, learn from mistakes and develop the discipline needed beyond school.</p>
+
+<h3>🎯 Purpose of this website</h3>
+<p>The purpose is to <strong>help young people learn, grow and work towards financial freedom</strong>. Education is the foundation. After building strong school knowledge, young people can explore careers, entrepreneurship, technology, coding, money management and other legitimate ways of creating opportunities.</p>
+<p><strong>Financial freedom is not a promise or a shortcut.</strong> It comes from education, useful skills, discipline, good decisions, saving, responsible investing and creating value over time.</p>
+<p>Use this website to study first, build your skills, and prepare yourself for the future.</p>
+
+<h3>📚 Start Learning</h3>
+<p>Choose your grade and subject, then study the examples and test yourself.</p>
+<label>Grade</label>
+<select id="grade"><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select>
+<input id="search" placeholder="Search a subject or topic..." oninput="filterSubjects()">
+<div id="quick" class="grid"></div>
+</div>
+<div class="card">
+<h2>🎯 Smart Study Method</h2>
+<ol>
+<li>Learn the concept.</li><li>Study a worked example.</li><li>Try a question without looking at the answer.</li>
+<li>Mark your work and correct mistakes.</li><li>Repeat difficult topics.</li>
+</ol>
+</div>
+</section>
+
+<section id="subjects" class="lesson">
+<div class="card"><h2>📚 Subject Library</h2><p><strong>Now includes digital textbook + workbook + test + memo modes.</strong></p><p><strong>Full lesson packs:</strong> select any subject to open Grade 10, 11 and 12 topic lessons, examples and practice questions. These are study guides, so learners should also follow their school syllabus and prescribed resources.</p><p>These are broad subject areas commonly offered in South African Grade 10–12 schools. Your school's exact subject package may differ.</p><div id="subjectGrid" class="grid"></div></div>
+</section>
+
+
+<section id="papers" class="lesson">
+  <div class="card paper-card">
+    <h2>📄 Spalo Student Papers</h2>
+    <p><strong>Grade 10 • Grade 11 • Grade 12</strong></p>
+    <p>Use this area for downloadable study papers, practice papers, tests, workbooks and memorandums.</p>
+
+    <div class="grid">
+      <div>
+        <label>Grade</label>
+        <select id="paperGrade" onchange="renderStudentPapers()">
+          <option>Grade 10</option>
+          <option>Grade 11</option>
+          <option>Grade 12</option>
+        </select>
+      </div>
+      <div>
+        <label>Subject</label>
+        <select id="paperSubject" onchange="renderStudentPapers()"></select>
+      </div>
+      <div>
+        <label>Paper type</label>
+        <select id="paperType" onchange="renderStudentPapers()">
+          <option>Past Papers</option>
+          <option>Practice Papers</option>
+          <option>Tests</option>
+          <option>Workbooks</option>
+          <option>Memorandums</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="studentPapersList" style="margin-top:16px"></div>
+
+<div class="card paper-card" style="margin-top:18px">
+  <h3>🌐 Spalo Paper Finder</h3>
+<div style="margin:10px 0 14px">
+  <input id="paperWebSearch" placeholder="Search: Grade 12 Mathematics 2025 paper 1"
+         onkeydown="if(event.key==='Enter') searchPaperWeb()">
+  <button onclick="searchPaperWeb()">🔎 Find Paper Online</button>
+  <div id="paperSearchLinks" style="margin-top:10px"></div>
+</div>
+
+  <p><strong>Find and download South African papers quickly.</strong> These links open established paper libraries or official education sources where learners can choose the grade, subject and year.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🇿🇦 Official DBE</h3>
+      <p>Official Department of Basic Education past-paper page, including Grade 10/11 common papers and Grade 12 NSC papers.</p>
+      <a class="btn" href="https://www.education.gov.za/Curriculum/NationalSeniorCertificate%28NSC%29Examinations/NSCPastExaminationpapers.aspx" target="_blank" rel="noopener">📥 Open DBE Papers</a>
+    </div>
+
+    <div class="card">
+      <h3>📚 iKamva Learning</h3>
+      <p>Organised Grade 10, 11 and 12 paper links with a simple grade-based layout.</p>
+      <a class="btn" href="https://ikamvalearning.co.za/past-papers/" target="_blank" rel="noopener">📥 Find Papers</a>
+    </div>
+
+    <div class="card">
+      <h3>📝 Testpapers</h3>
+      <p>Large South African past-paper library, especially useful for Grade 12 subjects.</p>
+      <a class="btn" href="https://www.testpapers.co.za/" target="_blank" rel="noopener">📥 Browse Papers</a>
+    </div>
+
+    <div class="card">
+      <h3>🌐 WCED ePortal</h3>
+      <p>Western Cape education portal with Grade 12 NSC papers, memos and answer books where available.</p>
+      <a class="btn" href="https://wcedeportal.westerncape.gov.za/nsc-past-exam-papers-and-memos" target="_blank" rel="noopener">📥 Open WCED Papers</a>
+    </div>
+  </div>
+
+  <p class="small">
+    <strong>Best choice:</strong> use the official DBE source first when an official paper is available.
+    Spalo Study Hub provides convenient links to resources; it does not claim ownership of third-party papers.
+  </p>
+</div>
+
+
+    <div class="paper-note">
+      <strong>📌 How to add your PDF papers:</strong>
+      Put your PDF files in a folder called <strong>papers</strong> next to this HTML file,
+      then use the same filenames in the paper list below. Example:
+      <strong>papers/Grade_12_History_Practice.pdf</strong>
+    </div>
+  </div>
+</section>
+
+<section id="lessons" class="lesson">
+<div class="card">
+<h2>📝 Core Lessons, Examples & Answers</h2>
+<p>Select a subject below.</p>
+<select id="lessonSelect" onchange="renderLesson()"></select>
+<div id="lessonContent"></div>
+</div>
+</section>
+
+<section id="quiz" class="lesson">
+<div class="card">
+<h2>❓ Practice Quiz</h2>
+<p>Choose a subject. Questions are designed for revision; always use your teacher/textbook for your official curriculum and assessment requirements.</p>
+<select id="quizSelect" onchange="makeQuiz()"></select>
+<div id="quizBox"></div>
+<div id="quizScore"></div>
+</div>
+</section>
+
+
+<section id="library" class="lesson">
+<div class="card">
+<h2>📖 Digital Textbooks & Workbooks</h2>
+<p>Choose a grade, subject and learning mode. Every lesson is original study content with examples, workbook practice and memo guidance.</p>
+<div class="grid">
+<div><label>Grade</label><select id="bookGrade" onchange="loadBookSubjects()"><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+<div><label>Subject</label><select id="bookSubject" onchange="loadBookTopics()"></select></div>
+<div><label>Mode</label><select id="bookMode" onchange="renderBook()"><option>📖 Textbook</option><option>📝 Workbook</option><option>🧪 Test</option><option>✅ Memo</option></select></div>
+</div>
+<div id="bookTopics"></div>
+<div id="bookContent"></div>
+</div>
+</section>
+
+<section id="future" class="lesson">
+<div class="card">
+<h2>💰 Youth Future & Financial Freedom</h2>
+<p>School comes first. Use these topics to start thinking about life after school.</p>
+<div class="grid">
+<div class="card subject"><h3>💵 Money Management</h3><p>Learn budgeting, saving, needs vs wants, responsible borrowing and planning for goals.</p></div>
+<div class="card subject"><h3>💻 Digital Skills</h3><p>Explore coding, websites, digital tools, research and responsible use of technology.</p></div>
+<div class="card subject"><h3>🚀 Entrepreneurship</h3><p>Learn how businesses solve problems, create value, serve customers and manage money.</p></div>
+<div class="card subject"><h3>🎓 Career Planning</h3><p>Research careers, qualifications, skills and pathways that match your interests.</p></div>
+<div class="card subject"><h3>📈 Investing Basics</h3><p>Learn the difference between saving and investing, risk and return, diversification and long-term thinking.</p></div>
+<div class="card subject"><h3>🧠 Discipline</h3><p>Build habits: study consistently, track goals, learn from mistakes and avoid get-rich-quick promises.</p></div>
+</div>
+</div>
+<div class="card">
+<h2>⭐ Spalo's Message to Youth</h2>
+<p><strong>Your current situation does not have to define your future.</strong> Learn a skill, practise it, stay disciplined and use your knowledge to create value for other people.</p>
+<p>Do not chase shortcuts. Build yourself step by step.</p>
+</div>
+</section>
+
+
+
+<section id="testbooks" class="lesson">
+  <div class="card testbook-card">
+    <h2>🧪 Spalo Test Books</h2>
+    <p><strong>Grade 10 • Grade 11 • Grade 12</strong></p>
+    <p>Choose a subject and take a structured revision test using the lessons, worked examples,
+    workbook questions and quiz material already built into Spalo Study Hub.</p>
+
+    <div class="grid">
+      <div>
+        <label>Grade</label>
+        <select id="tbGrade" onchange="loadTestBookSubjects()">
+          <option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+        </select>
+      </div>
+      <div>
+        <label>Subject</label>
+        <select id="tbSubject" onchange="loadTestBookTopics()"></select>
+      </div>
+      <div>
+        <label>Test length</label>
+        <select id="tbLength">
+          <option value="10">10 Questions</option>
+          <option value="20">20 Questions</option>
+          <option value="30">30 Questions</option>
+          <option value="all">All Available</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="startTestBook()">🚀 Start Test</button>
+    <button onclick="resetTestBook()">🔄 Reset</button>
+
+    <div id="tbInfo" style="margin-top:14px"></div>
+    <div id="tbQuestions"></div>
+    <div id="tbResult"></div>
+  </div>
+
+  <div class="card">
+    <h3>📚 What is included?</h3>
+    <span class="badge">Lessons</span>
+    <span class="badge">Worked Examples</span>
+    <span class="badge">Workbook Questions</span>
+    <span class="badge">Memo Answers</span>
+    <span class="badge">Quiz Questions</span>
+    <span class="badge">Automatic Marking</span>
+    <span class="badge">Percentage</span>
+    <span class="badge">Pass / Review</span>
+    <p class="small">The current test bank is based on the material contained in this website. It does not claim to be an official school examination or an official past paper.</p>
+  </div>
+</section>
+
+
+<section id="ask" class="lesson">
+  <div class="card ask-card">
+    <h2>🤖 Ask Spalo — Student Help Desk</h2>
+    <p><strong>Ask anything about your Test Books, lessons, subjects, homework or a topic you are researching.</strong></p>
+    <textarea id="askInput" rows="5" style="width:100%;padding:12px;border:1px solid #ccd3df;border-radius:10px;font-size:16px"
+      placeholder="Example: Explain photosynthesis for Grade 10.&#10;Example: Help me understand this test question.&#10;Example: What should I research about climate change?"></textarea>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <button onclick="askSpalo()">🤖 Ask Spalo</button>
+      <button onclick="clearAsk()">🗑️ Clear</button>
+    </div>
+    <div id="askAnswer"></div>
+    <p class="small">Spalo Study Hub answers from its built-in learning material. For current facts or deeper research, use the Research section and verify information with reliable sources.</p>
+  </div>
+</section>
+
+
+<section id="research" class="lesson">
+  <div class="card research-card">
+    <h2>🔎 Online Research Centre</h2>
+    <p>Search the web for information to support school projects and research. Use reliable sources, compare information and record where your information came from.</p>
+
+    <input id="researchInput" placeholder="What do you want to research? Example: causes of climate change"
+      onkeydown="if(event.key==='Enter') runResearch()">
+    <button onclick="runResearch()">🔎 Search Online</button>
+
+    <div id="researchLinks" style="margin-top:16px"></div>
+
+    <h3>🌐 Recommended Research Sources</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>📘 Oxford Learner's Dictionaries</h3>
+        <p>Definitions, examples, grammar, pronunciation and learner resources.</p>
+        <a class="btn" href="https://www.oxfordlearnersdictionaries.com/" target="_blank">Open Oxford</a>
+      </div>
+      <div class="card">
+        <h3>📚 Oxford Reference</h3>
+        <p>Reference material for deeper academic research.</p>
+        <a class="btn" href="https://www.oxfordreference.com/" target="_blank">Open Oxford Reference</a>
+      </div>
+      <div class="card">
+        <h3>🌍 General Web Research</h3>
+        <p>Use a search engine to find current information, then check the credibility and date of each source.</p>
+        <button onclick="runResearch()">Search</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>✅ Research checklist</h3>
+      <ol>
+        <li>Write your research question.</li>
+        <li>Use more than one reliable source where possible.</li>
+        <li>Check the author, organisation, date and evidence.</li>
+        <li>Compare conflicting information.</li>
+        <li>Write notes in your own words.</li>
+        <li>Keep a record of the sources you used.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+<section id="oxford" class="lesson">
+  <div class="card oxford-card">
+    <h2>📘 Oxford Student Resources</h2>
+    <p>Use Oxford resources alongside Spalo's lessons. Oxford Learner's Dictionaries provides learner definitions, examples, pronunciation, grammar resources and word lists. Its Student's Dictionary also focuses on curricular vocabulary across subjects such as Science, Geography, History, Literature, Maths and Computing.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>📖 Dictionary</h3>
+        <p>Look up words, meanings, examples and usage.</p>
+        <a class="btn" href="https://www.oxfordlearnersdictionaries.com/" target="_blank">Open Dictionary</a>
+      </div>
+      <div class="card">
+        <h3>🎓 Student's Dictionary</h3>
+        <p>Explore vocabulary connected with school subjects.</p>
+        <a class="btn" href="https://www.oxfordlearnersdictionaries.com/about/students" target="_blank">Open Student Resources</a>
+      </div>
+      <div class="card">
+        <h3>🧠 Free Learning Resources</h3>
+        <p>Grammar practice, pronunciation guides, word lists and other learner resources.</p>
+        <a class="btn" href="https://www.oxfordlearnersdictionaries.com/resources/" target="_blank">Open Resources</a>
+      </div>
+      <div class="card">
+        <h3>✍️ Academic Writing</h3>
+        <p>Oxford's academic resources include guidance for planning, writing and reviewing academic work.</p>
+        <a class="btn" href="https://www.oxfordlearnersdictionaries.com/about/academic/resources" target="_blank">Open Academic Resources</a>
+      </div>
+    </div>
+
+    <p class="small"><strong>Important:</strong> This website links to Oxford resources; it does not reproduce Oxford's copyrighted dictionary or reference content.</p>
+  </div>
+</section>
+
+
+
+<section id="essays" class="lesson">
+  <div class="card essay-card">
+    <h2>✍️ Spalo Essay Centre</h2>
+    <p><strong>Plan, practise and improve school essays.</strong></p>
+
+    <div class="grid">
+      <div>
+        <label>Grade</label>
+        <select id="essayGrade">
+          <option>Grade 10</option>
+          <option>Grade 11</option>
+          <option>Grade 12</option>
+        </select>
+      </div>
+      <div>
+        <label>Essay type</label>
+        <select id="essayType">
+          <option>Argumentative</option>
+          <option>Discursive</option>
+          <option>Descriptive</option>
+          <option>Narrative</option>
+          <option>Expository</option>
+          <option>Literary analysis</option>
+        </select>
+      </div>
+    </div>
+
+    <input id="essayTopic" placeholder="Enter an essay question or topic">
+    <button onclick="generateEssay()">✍️ Generate Essay Guide</button>
+    <button onclick="showEssayQuestion()">🎲 Give Me a Question</button>
+    <div id="essayOutput"></div>
+
+    <div class="essay-box">
+      <h3>📝 Essay structure</h3>
+      <p><strong>Introduction:</strong> Introduce the topic and your main position or focus.</p>
+      <p><strong>Body:</strong> Develop one main idea per paragraph with evidence/examples and explanation.</p>
+      <p><strong>Conclusion:</strong> Summarise the main points and give a clear closing statement.</p>
+    </div>
+
+    <p class="small">📚 History essay knowledge is stored in the website Test Book knowledge. The South African War (1899–1902) question can generate a full essay plus an explanation and study guide.</p>
+  </div>
+</section>
+
+
+<section id="essayai" class="lesson">
+  <div class="card essay-card">
+    <h2>🤖 Spalo Essay AI</h2>
+    <p><strong>A friendly writing coach for students.</strong> Ask for a topic, plan, explanation, full model essay, paragraph help, or feedback.</p>
+
+    <div class="essay-box">
+      <label for="essayAiGrade">Grade</label>
+      <select id="essayAiGrade">
+        <option>Grade 10</option>
+        <option>Grade 11</option>
+        <option>Grade 12</option>
+      </select>
+
+      <label for="essayAiSubject">Subject</label>
+      <select id="essayAiSubject">
+        <option>English</option>
+        <option>History</option>
+        <option>Geography</option>
+        <option>Life Orientation</option>
+        <option>General</option>
+      </select>
+
+      <label for="essayAiMode">What do you need?</label>
+      <select id="essayAiMode">
+        <option value="full">Write a full model essay</option>
+        <option value="explain">Explain the essay simply</option>
+        <option value="plan">Make an essay plan</option>
+        <option value="intro">Help me write an introduction</option>
+        <option value="paragraph">Help me build body paragraphs</option>
+        <option value="conclusion">Help me write a conclusion</option>
+        <option value="feedback">Give feedback on my essay</option>
+        <option value="topic">Give me an essay topic</option>
+      </select>
+
+      <textarea id="essayAiQuestion" rows="6" placeholder="Type your essay question or paste your essay here..."></textarea>
+      <button onclick="runEssayAI()">🤖 Ask Spalo Essay AI</button>
+      <button onclick="essayAiExample()">💡 Try an Example</button>
+    </div>
+
+    <div class="essay-box">
+      <h3>❤️ Comfortable Student Mode</h3>
+      <p>No complicated language. Spalo Essay AI can explain difficult ideas in simple steps, show examples, and help you improve without making you feel judged.</p>
+      <p><strong>Study first:</strong> use the model essay to understand the structure, then write your own answer in your own words.</p>
+    </div>
+
+    <div id="essayAiOutput"></div>
+  </div>
+</section>
+
+<section id="studentAi" class="lesson">
+  <div class="card ask-card">
+    <h2>✨ Spalo Student AI</h2>
+    <p><strong>Ask a question and Spalo will first search the Test Book knowledge built into this website.</strong></p>
+
+    <textarea id="aiQuestion" rows="5" style="width:100%;padding:12px;border:1px solid #ccd3df;border-radius:10px;font-size:16px"
+      placeholder="Ask: What is photosynthesis?&#10;Ask: Give me the answer to this test question..."></textarea>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <button onclick="studentAIAnswer()">✨ Ask Student AI</button>
+      <button onclick="clearStudentAI()">🗑️ Clear</button>
+      <button onclick="show('testbooks')">🧪 Open Test Books</button>
+      <button onclick="show('research')">🔎 Research Online</button>
+    </div>
+
+    <div id="aiAnswer"></div>
+    <div id="aiSources" style="margin-top:10px"></div>
+
+    <p class="small">
+      The AI uses the material stored in this website first. If the website does not contain
+      enough information, it tells the student to research the question online instead of pretending
+      that an answer came from the Test Books.
+    </p>
+  </div>
+</section>
+
+<section id="mathsolver" class="lesson">
+  <div class="card math-solver">
+    <h2>🧮 Spalo Math Solver</h2>
+    <p>Enter a simple Grade 10–12 maths problem and get a guided solution.</p>
+
+    <input id="mathInput" class="math-input"
+      placeholder="Examples: 2x + 5 = 17   |   3*4 + 5   |   20% of 750"
+      onkeydown="if(event.key==='Enter') solveMath()">
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="solveMath()">🔎 Solve</button>
+      <button onclick="clearMathSolver()">🗑️ Clear</button>
+    </div>
+
+    <div id="mathResult" style="margin-top:16px"></div>
+
+    <details>
+      <summary>📚 Try an example</summary>
+      <div style="margin-top:10px">
+        <button onclick="useMathExample('2x + 5 = 17')">2x + 5 = 17</button>
+        <button onclick="useMathExample('20% of 750')">20% of 750</button>
+        <button onclick="useMathExample('3x + 6 = 21')">3x + 6 = 21</button>
+        <button onclick="useMathExample('3 * 4 + 5')">3 × 4 + 5</button>
+      </div>
+    </details>
+
+    <p class="small">
+      This is an educational solver built into Spalo Study Hub. For advanced or unusual
+      expressions, learners should verify the working with a teacher or prescribed textbook.
+    </p>
+  </div>
+</section>
+
+<section id="tools" class="lesson">
+<div class="card">
+<h2>⏱️ Study Timer</h2>
+<p id="timer">25:00</p>
+<button onclick="startTimer()">Start</button>
+<button onclick="pauseTimer()">Pause</button>
+<button onclick="resetTimer()">Reset</button>
+</div>
+<div class="card">
+<h2>💡 Exam Tips</h2>
+<ul>
+<li>Read every question carefully before answering.</li>
+<li>Show calculations in Mathematics and Physical Sciences.</li>
+<li>Use correct units and significant figures where required.</li>
+<li>For languages, plan your answer before writing.</li>
+<li>For essays, use an introduction, logical paragraphs and a conclusion.</li>
+<li>Do past papers under timed conditions.</li>
+<li>Keep a mistake notebook and revise it weekly.</li>
+</ul>
+</div>
+<div class="card">
+<h2>📞 Spalo Study Support</h2>
+<p>If you need help with this study project, contact Spalo:</p>
+<p><strong>071 454 0601</strong></p>
+<a class="btn" href="https://wa.me/27714540601" target="_blank">WhatsApp Spalo</a>
+</div>
+</section>
+
+</main>
+
+<footer>© 2026 Spalo Youth Study & Future Hub • Grade 10–12 • Learn today, build tomorrow.</footer>
+
+<script>
+const subjects = [
+["Mathematics","Algebra, functions, trigonometry, geometry, statistics, probability, calculus foundations"],
+["Natural Sciences","Foundation science revision: matter, energy, forces, ecosystems, cells and scientific investigation"],
+["Economic & Management Sciences","Basic economics, entrepreneurship, accounting, budgeting and business concepts"],
+["Mathematical Literacy","Finance, measurement, maps, data handling, probability, graphs"],
+["Physical Sciences","Mechanics, waves, electricity, matter, chemical reactions, stoichiometry"],
+["Life Sciences","Cells, genetics, evolution, ecology, human systems, reproduction"],
+["Accounting","Accounting concepts, financial statements, adjustments, inventory, analysis"],
+["Business Studies","Business environments, management, marketing, entrepreneurship, operations"],
+["Economics","Markets, circular flow, national economy, inflation, unemployment, trade"],
+["Geography","Mapwork, climate, geomorphology, population, development, GIS"],
+["History","Source analysis, historical interpretation, causes, consequences and essay writing"],
+["Life Orientation","Personal wellbeing, careers, citizenship, relationships, study and life skills"],
+["English Home Language","Comprehension, literature, language, writing and oral communication"],
+["English First Additional Language","Comprehension, summary, language, literature and writing"],
+["Afrikaans","Taal, leesbegrip, opsomming, letterkunde, skryfwerk"],
+["Information Technology","Programming, algorithms, data, databases, networks and software concepts"],
+["Computer Applications Technology","Word processing, spreadsheets, databases, presentations and digital skills"],
+["Tourism","Tourism sectors, attractions, maps, sustainable tourism and customer service"],
+["Agricultural Sciences","Soil, plants, animals, genetics, agricultural production and management"],
+["Consumer Studies","Food, clothing, housing, consumer choices and financial management"],
+["Engineering Graphics & Design","Technical drawing, scale, projection, CAD and design principles"],
+["Visual Arts","Art elements, principles, analysis, art history and practical work"],
+["Dramatic Arts","Performance, theatre, character, voice, movement and dramatic theory"]
+];
+
+const lessons = {
+"Mathematics":{
+"Grade 11":"Algebra: If 2x + 5 = 17, subtract 5 to get 2x = 12, then divide by 2: x = 6. Functions: understand domain, range, intercepts and transformations. Trigonometry: use sin, cos and tan with right triangles. Statistics: know mean, median, mode, range and interpretation of data.",
+"Grade 12":"Functions: analyse graphs, intercepts, turning points and transformations. Finance: understand growth/decay and interest formulas. Calculus: derivative gives rate of change/gradient. Example: if f(x)=x², then f'(x)=2x. Probability: use complementary and independent-event ideas where appropriate."
+},
+"Mathematical Literacy":{
+"Grade 11":"Example: A shirt costs R500 and is discounted by 20%. Discount = R100, so sale price = R400. Always identify the original amount, percentage and final amount.",
+"Grade 12":"Finance: compare income, expenses, interest and budgets. Example: monthly income R12 000 and expenses R8 500 gives a surplus of R3 500. Data: read tables, graphs and percentages carefully."
+},
+"Physical Sciences":{
+"Grade 11":"Mechanics: speed = distance/time. Example: 120 m in 20 s gives 6 m/s. Always include units. Waves: frequency and wavelength are linked to wave speed.",
+"Grade 12":"Newton's second law: F = ma. Example: m=5 kg and a=2 m/s² gives F=10 N. Electricity: V=IR. Chemistry includes reaction rates, equilibrium, acids/bases, electrochemistry and organic chemistry."
+},
+"Life Sciences":{
+"Grade 11":"Cells: know organelles and their functions. Genetics: DNA carries hereditary information. Ecology: populations interact with biotic and abiotic factors.",
+"Grade 12":"Genetics, evolution, human reproduction, meiosis, homeostasis and ecology are major areas. Example: meiosis produces cells with half the chromosome number and increases genetic variation through processes such as crossing over."
+},
+"Accounting":{
+"Grade 11":"The accounting equation is Assets = Equity + Liabilities. Example: assets R100 000 and liabilities R30 000 means equity is R70 000.",
+"Grade 12":"Practise financial statements, adjustments, inventory, VAT, analysis and interpretation. Always check that your figures balance and explain what ratios mean rather than only calculating them."
+},
+"Business Studies":{
+"Grade 11":"Learn business environments, entrepreneurship, management and business functions. Example: a SWOT analysis identifies strengths, weaknesses, opportunities and threats.",
+"Grade 12":"Focus on management and leadership, marketing, operations, human resources, quality and business strategies. Exam answers should define the concept, explain it and apply it where required."
+},
+"Economics":{
+"Grade 11":"Understand demand and supply. A change in price can cause movement along a demand curve, while other factors can shift demand.",
+"Grade 12":"Study macroeconomics, markets, economic growth, inflation, unemployment, public sector and international trade. Use diagrams where the question requires them and label axes clearly."
+},
+"Geography":{
+"Grade 11":"Mapwork requires scale, direction, coordinates, distance and interpretation. Physical geography includes climate and geomorphology.",
+"Grade 12":"Practise GIS, mapwork, climate, fluvial processes, settlement, economic geography and development. In data questions, quote evidence from the source."
+},
+"History":{
+"Grade 11":"Historical questions require evidence and context. Separate primary sources from secondary sources and consider reliability and bias.",
+"Grade 12":"For essays: answer the question directly, provide contextual evidence, explain causes/consequences and reach a supported conclusion. Do not merely list facts."
+},
+"Life Orientation":{
+"Grade 11":"Topics include wellbeing, relationships, careers, citizenship and responsible decision-making. Use real examples in extended answers.",
+"Grade 12":"Revise career planning, study skills, social/environmental responsibility, constitutional values and personal wellbeing. Structure longer answers clearly."
+},
+"English Home Language":{
+"Grade 11":"Comprehension: answer from the text and explain evidence. Literature: discuss theme, character, imagery and structure.",
+"Grade 12":"Practise comprehension, summary, language, poetry/prose/drama and transactional/creative writing. Plan essays and support interpretations with textual evidence."
+},
+"English First Additional Language":{
+"Grade 11":"Practise reading, vocabulary, grammar, summary and writing. Identify the purpose and audience before writing.",
+"Grade 12":"Practise comprehension, summary, language structures, literature and transactional texts. Check spelling, punctuation, tense and paragraphing."
+},
+"Afrikaans":{
+"Grade 11":"Oefen leesbegrip, taal, opsomming, letterkunde en skryfwerk. Lees die vraag deeglik voordat jy antwoord.",
+"Grade 12":"Werk aan taalstrukture, begrip, opsomming, letterkunde en skryfwerk. Gebruik bewyse uit die teks waar nodig."
+},
+"Information Technology":{
+"Grade 11":"Programming basics: variables, input, output, selection and loops. Example logic: if mark >= 50 then display 'Pass'.",
+"Grade 12":"Revise object-oriented concepts where applicable, databases, SQL, algorithms, data structures and software development. Test programs with normal, boundary and invalid inputs."
+},
+"Computer Applications Technology":{
+"Grade 11":"Practise documents, spreadsheets, formulas, presentations, databases and file management.",
+"Grade 12":"Use advanced spreadsheet functions, database concepts, document design, presentations, information management and practical problem solving."
+},
+"Tourism":{
+"Grade 11":"Study tourism sectors, attractions, transport, accommodation, customer service and responsible tourism.",
+"Grade 12":"Practise sustainable tourism, domestic/international tourism, maps, foreign exchange, travel documentation and tourism marketing."
+},
+"Agricultural Sciences":{
+"Grade 11":"Study soil, crops, animals, genetics and agricultural management. Understand how environmental conditions affect production.",
+"Grade 12":"Revise production systems, genetics, nutrition, reproduction, animal health, soil management and agricultural economics."
+},
+"Consumer Studies":{
+"Grade 11":"Study food, nutrition, clothing, housing and consumer decisions. Compare needs versus wants when budgeting.",
+"Grade 12":"Practise production, entrepreneurship, food and nutrition, clothing, housing and financial decision-making."
+},
+"Engineering Graphics & Design":{
+"Grade 11":"Practise scale, line types, geometric construction and orthographic/isometric drawing.",
+"Grade 12":"Revise detailed technical drawing, projection, sections, dimensioning, CAD principles and design interpretation."
+},
+"Visual Arts":{
+"Grade 11":"Know art elements such as line, shape, colour, texture, form and space, and principles such as balance and contrast.",
+"Grade 12":"Analyse artworks using visual evidence and context. Practical work should show planning, experimentation, refinement and a final resolved work."
+},
+"Dramatic Arts":{
+"Grade 11":"Study character, voice, movement, improvisation and theatre conventions. Practise performance and reflection.",
+"Grade 12":"Revise dramatic theory, performance techniques, theatre history/styles and critical analysis. Explain choices using drama terminology."
+}
+};
+
+
+const topicLibrary = {
+"Mathematics":[
+["Grade 10","Algebra & equations","Simplify expressions, solve linear equations and inequalities.","Example: 3x+6=18 → x=4.","Practice: 5x−10=25. Answer: x=7."],
+["Grade 10","Functions & graphs","Understand tables, equations, domain, range and intercepts.","Example: y=2x+1 has y-intercept 1.","Practice: Find y when x=3. Answer: 7."],
+["Grade 10","Geometry & measurement","Use angle facts, perimeter, area, volume and Pythagoras.","Example: a²+b²=c² for a right triangle.","Practice: legs 6 and 8 give hypotenuse 10."],
+["Grade 10","Statistics & probability","Read data, averages and basic probability.","Example: mean of 2,4,6 is 4.","Practice: P(rolling a 6)=1/6."],
+["Grade 11","Algebra & functions","Work with exponents, surds, equations and function transformations.","Example: x²−9=(x−3)(x+3).","Practice: Factor x²−25. Answer: (x−5)(x+5)."],
+["Grade 11","Trigonometry","Use ratios, identities and trigonometric graphs.","Example: sin θ=opposite/hypotenuse.","Practice: opposite 3, hypotenuse 5 → sin θ=3/5."],
+["Grade 11","Analytical geometry","Use gradients, distance and midpoint formulas.","Example: gradient=(y₂−y₁)/(x₂−x₁).","Practice: (1,2) to (3,6) has gradient 2."],
+["Grade 12","Calculus","Use derivatives as rates of change and gradients.","Example: d(x²)/dx=2x.","Practice: derivative of 3x² is 6x."],
+["Grade 12","Probability & statistics","Use probability rules and statistical interpretation.","Example: P(not A)=1−P(A).","Practice: if P(A)=0.3, P(not A)=0.7."],
+["Grade 12","Finance & sequences","Apply growth, decay and sequences.","Example: repeated percentage change produces compound growth.","Practice: R1 000 growing 10% once becomes R1 100."]
+],
+"Mathematical Literacy":[
+["Grade 10","Numbers & percentages","Work with percentages, ratios, rates and decimals.","Example: 25% of 200=50.","Practice: 15% of 800=120."],
+["Grade 10","Finance","Read budgets, prices, invoices and basic interest.","Example: income minus expenses gives surplus/deficit.","Practice: R10 000−R7 500=R2 500 surplus."],
+["Grade 11","Measurement & maps","Use scale, area, volume, conversions and maps.","Example: scale 1:50 000 means 1 map unit represents 50 000 real units.","Practice: 2 cm represents 1 km."],
+["Grade 12","Finance & data","Analyse tax, budgets, loans, inflation, graphs and statistics.","Example: 10% increase on R500 gives R550.","Practice: compare total cost, not only monthly payment."]
+],
+"Physical Sciences":[
+["Grade 10","Matter & materials","Study states of matter, particles and material properties.","Example: heating generally increases particle energy.","Practice: explain why gases fill containers."],
+["Grade 10","Mechanics","Study motion, forces and energy.","Example: speed=distance/time.","Practice: 150 m in 30 s = 5 m/s."],
+["Grade 10","Waves & electricity","Learn wave properties and basic circuits.","Example: frequency measures cycles per second.","Practice: identify series and parallel circuits."],
+["Grade 11","Mechanics","Use kinematics, Newton's laws, momentum and energy.","Example: F=ma.","Practice: 4 kg × 3 m/s² = 12 N."],
+["Grade 11","Waves & sound","Study frequency, wavelength and sound.","Example: v=fλ.","Practice: f=5 Hz and λ=2 m gives v=10 m/s."],
+["Grade 12","Electricity & magnetism","Apply Ohm's law, circuits, power and electromagnetic ideas.","Example: V=IR.","Practice: V=12 V, R=4 Ω → I=3 A."],
+["Grade 12","Chemical systems","Study reaction rates, equilibrium, acids/bases, electrochemistry and organic chemistry.","Example: catalysts increase reaction rate without being consumed.","Practice: explain why temperature can increase reaction rate."]
+],
+"Life Sciences":[
+["Grade 10","Cells & tissues","Know cell structures, functions, tissues and microscopy.","Example: mitochondria are associated with aerobic energy release.","Practice: state one function of the nucleus."],
+["Grade 10","Biodiversity","Classify organisms and understand ecosystems.","Example: producers make food using photosynthesis.","Practice: give one biotic factor."],
+["Grade 11","Genetics","Study DNA, genes, chromosomes, inheritance and variation.","Example: alleles are alternative forms of a gene.","Practice: distinguish genotype from phenotype."],
+["Grade 11","Human systems","Study digestion, respiration, circulation and excretion.","Example: alveoli provide a large gas-exchange surface.","Practice: explain why alveoli are thin."],
+["Grade 12","Meiosis & reproduction","Study meiosis, gametes, reproduction and inheritance.","Example: meiosis reduces chromosome number by half.","Practice: explain how crossing over increases variation."],
+["Grade 12","Evolution & ecology","Study natural selection, evolution, populations and ecosystems.","Example: advantageous inherited traits can become more common over generations.","Practice: explain natural selection."]
+],
+"Accounting":[
+["Grade 10","Accounting equation","Learn Assets=Equity+Liabilities and basic transactions.","Example: assets R50 000, liabilities R20 000 → equity R30 000.","Practice: explain the effect of an owner cash investment."],
+["Grade 10","Journals & ledger","Record transactions systematically and understand debit/credit.","Example: every transaction has a dual effect.","Practice: identify accounts affected by a cash purchase."],
+["Grade 11","Adjustments & inventory","Study stock, depreciation, bad debts and period-end adjustments.","Example: depreciation allocates asset cost over useful life.","Practice: explain why adjustments are necessary."],
+["Grade 12","Financial statements","Prepare and interpret financial statements.","Example: profit is revenue less relevant expenses.","Practice: explain the difference between profit and cash."],
+["Grade 12","Ratios & analysis","Calculate and interpret liquidity, profitability and solvency ratios.","Example: compare ratios with prior years or benchmarks.","Practice: explain what a higher current ratio may indicate."]
+],
+"Business Studies":[
+["Grade 10","Business environments","Identify micro, market and macro environments.","Example: competitors belong to the market environment.","Practice: classify a new law as an external factor."],
+["Grade 10","Entrepreneurship","Understand business ideas, needs, wants and entrepreneurial qualities.","Example: a business can solve a customer problem.","Practice: turn a common problem into a business idea."],
+["Grade 11","Management & leadership","Compare leadership styles and management functions.","Example: planning comes before implementation and control.","Practice: describe democratic leadership."],
+["Grade 12","Marketing & operations","Study marketing mix, production, quality and strategies.","Example: marketing includes product, price, place and promotion.","Practice: give one example of promotion."],
+["Grade 12","Human resources","Study recruitment, selection, training and labour relations.","Example: selection should match candidates to job requirements.","Practice: explain why training can improve performance."]
+],
+"Economics":[
+["Grade 10","Basic economic problem","Study scarcity, choice, opportunity cost and factors of production.","Example: choosing one option means giving up the next-best alternative.","Practice: define opportunity cost."],
+["Grade 11","Demand & supply","Understand determinants, curves, equilibrium and market changes.","Example: a shift in demand differs from movement caused by price.","Practice: state one factor that can increase demand."],
+["Grade 12","Macroeconomics","Study national income, growth, inflation and unemployment.","Example: inflation is a sustained increase in the general price level.","Practice: explain one effect of high inflation."],
+["Grade 12","International trade","Study exchange rates, imports, exports and trade policy.","Example: exports are goods/services sold to other countries.","Practice: distinguish import from export."]
+],
+"Geography":[
+["Grade 10","Map skills","Practise scale, direction, coordinates, symbols and interpretation.","Example: use scale to convert map distance to real distance.","Practice: identify a four-figure grid reference."],
+["Grade 10","Climate & weather","Study atmospheric processes and weather elements.","Example: temperature, pressure, wind and rainfall are weather elements.","Practice: distinguish weather from climate."],
+["Grade 11","Geomorphology","Study rivers, slopes, erosion, weathering and landforms.","Example: rivers erode, transport and deposit material.","Practice: name one river erosion process."],
+["Grade 12","Human geography","Study settlements, population, economic activities and development.","Example: push and pull factors influence migration.","Practice: give one push factor."],
+["Grade 12","GIS & mapwork","Interpret spatial data, maps, aerial images and GIS concepts.","Example: GIS combines location data with information about places.","Practice: explain one use of GIS."]
+],
+"History":[
+["Grade 10","Historical skills","Use chronology, sources, evidence, cause and consequence.","Example: primary sources originate from the period studied.","Practice: give one primary source."],
+["Grade 11","Industrialisation & change","Study historical change through evidence and context.","Example: industrialisation changed work, cities and production.","Practice: identify one social effect of industrialisation."],
+["Grade 12","Source-based questions","Evaluate usefulness, reliability, bias and corroboration.","Example: compare sources rather than accepting one automatically.","Practice: give one reason a source may be biased."],
+["Grade 12","Historical essays","Build an argument with evidence, explanation and a conclusion.","Example: link each paragraph back to the question.","Practice: write a thesis before the essay."]
+],
+"Life Orientation":[
+["Grade 10","Personal wellbeing","Study health, relationships, decisions and responsible behaviour.","Example: healthy routines balance sleep, study, activity and rest.","Practice: name two healthy study habits."],
+["Grade 11","Career & study planning","Explore careers, applications, study methods and goals.","Example: SMART goals are specific, measurable, achievable, relevant and time-bound.","Practice: turn 'study more' into a SMART goal."],
+["Grade 12","Life after school","Prepare for tertiary study, work, applications, citizenship and financial responsibility.","Example: compare course requirements before applying.","Practice: list three things to check before choosing a career."]
+],
+"English Home Language":[
+["Grade 10","Comprehension","Identify main ideas, inference, tone, purpose and evidence.","Example: an inference combines textual clues with reasoning.","Practice: support an inference with evidence."],
+["Grade 11","Literature","Analyse character, theme, setting, imagery, symbolism and structure.","Example: theme is a central idea, not just a plot event.","Practice: explain how setting affects a character."],
+["Grade 12","Writing & language","Plan essays, transactional texts, summaries and language responses.","Example: audience and purpose determine tone and register.","Practice: rewrite an informal sentence in formal register."]
+],
+"English First Additional Language":[
+["Grade 10","Reading & comprehension","Read for meaning, vocabulary, inference and purpose.","Example: identify the instruction word before answering.","Practice: distinguish fact from opinion."],
+["Grade 11","Summary & language","Practise concise summaries, grammar, punctuation and vocabulary.","Example: remove repetition and keep only key ideas.","Practice: correct subject-verb agreement."],
+["Grade 12","Literature & writing","Prepare literature, comprehension and transactional writing.","Example: support literary claims with relevant evidence.","Practice: plan a formal letter with correct register."]
+],
+"Afrikaans":[
+["Grade 10","Leesbegrip","Oefen hoofgedagtes, afleidings, woordeskat en taalgebruik.","Voorbeeld: identifiseer eers die vraagwoord voordat jy antwoord.","Oefening: onderskei feit van mening."],
+["Grade 11","Taal & opsomming","Werk aan taalstrukture, leestekens, opsommings en woordeskat.","Voorbeeld: hou net die belangrikste idees in 'n opsomming.","Oefening: verbeter 'n sin se grammatika."],
+["Grade 12","Letterkunde & skryfwerk","Bestudeer letterkunde en verskillende skryftekste.","Voorbeeld: ondersteun jou interpretasie met bewyse uit die teks.","Oefening: skryf met die korrekte register."]
+],
+"Information Technology":[
+["Grade 10","Algorithms & programming","Learn variables, input/output, selection, loops and problem decomposition.","Example: IF mark>=50 THEN display Pass.","Practice: write pseudocode to add two numbers."],
+["Grade 11","Data & programming","Study arrays, functions, testing and program design.","Example: test normal, boundary and invalid inputs.","Practice: explain why modular code is useful."],
+["Grade 12","Programming & databases","Revise OOP concepts where applicable, SQL, databases, algorithms and software development.","Example: SELECT retrieves data matching a query.","Practice: explain a primary key."]
+],
+"Computer Applications Technology":[
+["Grade 10","Digital foundations","Learn file management, documents, presentations, spreadsheets and safe digital practice.","Example: meaningful filenames make files easier to find.","Practice: create a school-subject folder structure."],
+["Grade 11","Spreadsheets & databases","Use formulas, functions, charts, sorting, filtering and database concepts.","Example: SUM adds a range of numbers.","Practice: explain sorting versus filtering."],
+["Grade 12","Integrated practical skills","Combine documents, spreadsheets, databases, presentations and information management.","Example: choose the tool that best fits the task.","Practice: describe how a spreadsheet can support a budget."]
+],
+"Tourism":[
+["Grade 10","Tourism basics","Study tourism sectors, tourists, attractions and travel services.","Example: accommodation is part of tourism.","Practice: name three tourism sectors."],
+["Grade 11","Travel planning","Study itineraries, maps, transport, accommodation and customer service.","Example: an itinerary should include dates, times and activities.","Practice: create a one-day itinerary."],
+["Grade 12","Sustainable tourism","Study responsible tourism, international travel, foreign exchange and marketing.","Example: sustainable tourism considers environmental, social and economic impacts.","Practice: give two responsible-tourism actions."]
+],
+"Agricultural Sciences":[
+["Grade 10","Soil & plants","Study soil properties, plant structures and basic production.","Example: soil texture affects water movement.","Practice: name three soil components."],
+["Grade 11","Animals & production","Study animal nutrition, reproduction, health and production systems.","Example: balanced nutrition supports growth and production.","Practice: explain why clean water matters."],
+["Grade 12","Genetics & management","Study breeding, genetics, production planning, economics and sustainability.","Example: selective breeding chooses parents with desired traits.","Practice: explain one advantage of record keeping."]
+],
+"Consumer Studies":[
+["Grade 10","Consumer decisions","Study needs, wants, budgeting, food and household choices.","Example: a budget allocates income to priorities.","Practice: classify a phone upgrade as a need or want and justify."],
+["Grade 11","Food & clothing","Study nutrition, food production, textiles and consumer choices.","Example: compare price and quality before purchasing.","Practice: explain one function of protein."],
+["Grade 12","Entrepreneurship & production","Study product development, costing, quality, housing and consumer finance.","Example: selling price must cover costs and allow a sustainable margin.","Practice: list three costs a small food business may have."]
+],
+"Engineering Graphics & Design":[
+["Grade 10","Technical drawing","Learn line types, scale, geometric construction and conventions.","Example: scale allows large objects to be represented on paper.","Practice: explain why dimensions are important."],
+["Grade 11","Projection & design","Practise orthographic, isometric and other drawing systems.","Example: different views communicate different dimensions.","Practice: identify front, top and side views."],
+["Grade 12","Detailed design & CAD","Revise sections, dimensioning, design interpretation and CAD principles.","Example: CAD improves precision and editing.","Practice: explain why standard conventions matter."]
+],
+"Visual Arts":[
+["Grade 10","Elements & principles","Study line, shape, colour, texture, form, space, balance, contrast and emphasis.","Example: contrast can draw attention to a focal point.","Practice: identify two elements in an artwork."],
+["Grade 11","Art analysis","Analyse artworks using visual evidence, context and terminology.","Example: describe what you see before interpreting meaning.","Practice: compare two artworks using one formal element."],
+["Grade 12","Portfolio & critical study","Plan, experiment, refine and present practical work while analysing artists and contexts.","Example: development pages show how an idea changes.","Practice: explain why experimentation matters."]
+],
+"Dramatic Arts":[
+["Grade 10","Drama foundations","Study voice, movement, improvisation, character and theatre conventions.","Example: posture and movement can communicate character.","Practice: demonstrate a character using physical choices."],
+["Grade 11","Performance & theatre","Study dramatic forms, performance skills, scripts and theatre styles.","Example: vocal pace can change tension.","Practice: explain one use of pause."],
+["Grade 12","Theory & performance","Analyse dramatic works, styles, characterisation and performance choices.","Example: justify performance choices using drama terminology.","Practice: explain how staging can influence audience focus."]
+]
+};
+
+const quizzes = {
+"Mathematics":[
+["Solve: 2x + 5 = 17.","6",["5","6","7","8"]],
+["What is the derivative of x²?","2x",["x","2x","x²","2"]]
+],
+"Mathematical Literacy":[
+["R500 with a 20% discount costs how much?","R400",["R300","R350","R400","R450"]]
+],
+"Physical Sciences":[
+["If m=5 kg and a=2 m/s², what is F?","10 N",["2.5 N","7 N","10 N","20 N"]]
+],
+"Life Sciences":[
+["Which molecule carries hereditary information?","DNA",["ATP","DNA","Water","Glucose"]]
+],
+"Accounting":[
+["Assets = R100 000 and liabilities = R30 000. Equity?","R70 000",["R30 000","R70 000","R100 000","R130 000"]]
+],
+"Business Studies":[
+["SWOT stands for Strengths, Weaknesses, Opportunities and what?","Threats",["Targets","Trends","Threats","Trade"]]
+],
+"Economics":[
+["A change in the price of a product normally causes what on a demand curve?","Movement along the curve",["A demand shift","Movement along the curve","No change","A supply shift"]]
+],
+"Geography":[
+["Which tool is commonly used to represent location on a map?","Coordinates",["Balance sheet","Coordinates","Profit margin","DNA"]]
+],
+"History":[
+["A document created during the period being studied is generally called what?","Primary source",["Primary source","Secondary source","Forecast","Opinion poll"]]
+],
+"Information Technology":[
+["Which structure repeatedly executes instructions?","Loop",["Variable","Loop","Comment","Constant"]]
+],
+"English Home Language":[
+["What should a literature answer use to support an interpretation?","Textual evidence",["Guesswork","Textual evidence","Only a title","No explanation"]]
+],
+"Life Orientation":[
+["What is a useful exam preparation method?","Practising past questions",["Avoiding revision","Practising past questions","Studying only on exam morning","Ignoring mistakes"]]
+]
+};
+
+
+const studentPapers = [
+  ["Grade 10","Mathematics","Practice Papers","Grade_10_Mathematics_Practice.pdf"],
+  ["Grade 10","Mathematics","Tests","Grade_10_Mathematics_Test.pdf"],
+  ["Grade 10","English Home Language","Practice Papers","Grade_10_English_Practice.pdf"],
+  ["Grade 10","History","Practice Papers","Grade_10_History_Practice.pdf"],
+
+  ["Grade 11","Mathematics","Practice Papers","Grade_11_Mathematics_Practice.pdf"],
+  ["Grade 11","Mathematics","Tests","Grade_11_Mathematics_Test.pdf"],
+  ["Grade 11","English Home Language","Practice Papers","Grade_11_English_Practice.pdf"],
+  ["Grade 11","History","Practice Papers","Grade_11_History_Practice.pdf"],
+
+  ["Grade 12","Mathematics","Past Papers","Grade_12_Mathematics_Past_Paper.pdf"],
+  ["Grade 12","Mathematics","Memorandums","Grade_12_Mathematics_Memo.pdf"],
+  ["Grade 12","History","Past Papers","Grade_12_History_Past_Paper.pdf"],
+  ["Grade 12","History","Memorandums","Grade_12_History_Memo.pdf"],
+  ["Grade 12","English Home Language","Past Papers","Grade_12_English_Past_Paper.pdf"],
+  ["Grade 12","English Home Language","Memorandums","Grade_12_English_Memo.pdf"]
+];
+
+
+function searchPaperWeb(){
+  const q = document.getElementById("paperWebSearch")?.value.trim();
+  const box = document.getElementById("paperSearchLinks");
+  if(!box) return;
+  if(!q){
+    box.innerHTML = "<p class='small'>Type a grade, subject and year first.</p>";
+    return;
+  }
+  const encoded = encodeURIComponent(q);
+  box.innerHTML = `
+    <div class="card">
+      <strong>Search results:</strong>
+      <p><a class="btn" href="https://www.google.com/search?q=site%3Aeducation.gov.za+${encoded}+PDF" target="_blank" rel="noopener">🇿🇦 Search Official DBE</a></p>
+      <p><a class="btn" href="https://www.google.com/search?q=site%3Atestpapers.co.za+${encoded}+PDF" target="_blank" rel="noopener">📚 Search Testpapers</a></p>
+    </div>`;
+}
+
+function setupPaperSubjects(){
+  const select = document.getElementById("paperSubject");
+  if(!select) return;
+  const names = [...new Set(subjects.map(s=>s[0]))];
+  select.innerHTML = names.map(n=>`<option>${n}</option>`).join("");
+  renderStudentPapers();
+}
+
+function renderStudentPapers(){
+  const list = document.getElementById("studentPapersList");
+  const grade = document.getElementById("paperGrade")?.value;
+  const subject = document.getElementById("paperSubject")?.value;
+  const type = document.getElementById("paperType")?.value;
+  if(!list || !grade || !subject || !type) return;
+
+  const matches = studentPapers.filter(p =>
+    p[0] === grade && p[1] === subject && p[2] === type
+  );
+
+  if(!matches.length){
+    list.innerHTML = `
+      <div class="card">
+        <h3>📭 No PDF added yet</h3>
+        <p>There is no uploaded ${type.toLowerCase()} for ${grade} ${subject} in the current website file.</p>
+        <p class="small">Add the PDF to the <strong>papers</strong> folder and add its filename to the Student Papers list in the HTML.</p>
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = matches.map(p => {
+    const filename = p[3];
+    const label = filename.replace(/\.pdf$/i,"").replace(/_/g," ");
+    return `
+      <div class="card">
+        <h3>📄 ${label}</h3>
+        <span class="badge">${p[0]}</span>
+        <span class="badge">${p[1]}</span>
+        <span class="badge">${p[2]}</span>
+        <div class="paper-actions">
+          <a class="btn" href="papers/${encodeURIComponent(filename)}" target="_blank">👁️ Open PDF</a>
+          <a class="btn" href="papers/${encodeURIComponent(filename)}" download>⬇️ Download PDF</a>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function show(id){
+document.querySelectorAll('.lesson').forEach(x=>x.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+function renderSubjects(){
+let grid=document.getElementById('subjectGrid'); grid.innerHTML='';
+subjects.forEach(s=>{
+let d=document.createElement('div');d.className='card subject';
+d.innerHTML='<h3>'+s[0]+'</h3><p>'+s[1]+'</p><span class="tag">G11</span><span class="tag">G12</span>';
+d.onclick=()=>{document.getElementById('lessonSelect').value=s[0];show('lessons');renderLesson()};
+grid.appendChild(d);
+});
+document.getElementById('quick').innerHTML=subjects.slice(0,8).map(s=>'<div class="card subject"><h3>'+s[0]+'</h3><p class="small">'+s[1]+'</p></div>').join('');
+}
+function filterSubjects(){
+let q=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('#subjectGrid .card').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none');
+}
+function setupSelects(){
+let l=document.getElementById('lessonSelect'),q=document.getElementById('quizSelect');
+subjects.forEach(s=>{l.innerHTML+=`<option>${s[0]}</option>`; if(quizzes[s[0]])q.innerHTML+=`<option>${s[0]}</option>`});
+renderLesson();makeQuiz();
+}
+function renderLesson(){
+let name=document.getElementById('lessonSelect').value;
+let data=topicLibrary[name]||[];
+let content=document.getElementById('lessonContent');
+if(!data.length){
+content.innerHTML='<p>No detailed topic pack has been entered for this subject yet. Use your prescribed textbook and teacher resources for the official curriculum.</p>';
+return;
+}
+content.innerHTML=data.map((x,i)=>`
+<details ${i===0?'open':''}>
+<summary>📘 ${x[0]} — ${x[1]}</summary>
+<p><strong>Lesson:</strong> ${x[2]}</p>
+<p><strong>Worked example:</strong> ${x[3]}</p>
+<p><strong>Practice question:</strong> ${x[4]}</p>
+</details>`).join('');
+}
+let currentQuiz=[],score=0;
+function makeQuiz(){
+let name=document.getElementById('quizSelect').value;currentQuiz=quizzes[name]||[];score=0;
+let box=document.getElementById('quizBox');box.innerHTML='';
+currentQuiz.forEach((q,i)=>{
+let div=document.createElement('div');div.className='quiz';
+div.innerHTML='<strong>'+(i+1)+'. '+q[0]+'</strong>';
+q[2].forEach(o=>{let b=document.createElement('button');b.className='option';b.innerText=o;b.onclick=()=>answer(b,o,q[1],i);div.appendChild(b)});
+box.appendChild(div);
+});document.getElementById('quizScore').innerHTML='<p class="score">Score: 0/'+currentQuiz.length+'</p>';
+}
+function answer(btn,chosen,correct,i){
+let parent=btn.parentElement;
+if(parent.dataset.done)return;
+parent.dataset.done='1';
+if(chosen===correct){btn.classList.add('correct');score++}else{
+btn.classList.add('wrong');
+[...parent.querySelectorAll('button')].forEach(b=>{if(b.innerText===correct)b.classList.add('correct')});
+}
+document.getElementById('quizScore').innerHTML='<p class="score">Score: '+score+'/'+currentQuiz.length+'</p>';
+}
+let seconds=1500,interval=null;
+function updateTimer(){let m=Math.floor(seconds/60),s=seconds%60;document.getElementById('timer').innerText=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function startTimer(){if(interval)return;interval=setInterval(()=>{if(seconds>0){seconds--;updateTimer()}else{clearInterval(interval);interval=null;alert("Study session complete! Take a short break.")}},1000)}
+function pauseTimer(){clearInterval(interval);interval=null}
+function resetTimer(){pauseTimer();seconds=1500;updateTimer()}
+
+const bookQuestions = {
+"Mathematics":[
+["Grade 10","Algebra","Solve 3x+6=21.","x=5","Equations are balanced: subtract 6, then divide by 3."],
+["Grade 10","Geometry","A right triangle has sides 6 and 8. Find the hypotenuse.","10","Use a²+b²=c²: 36+64=100."],
+["Grade 11","Trigonometry","A right triangle has opposite 3 and hypotenuse 5. Find sin θ.","3/5","sin θ=opposite/hypotenuse."],
+["Grade 12","Calculus","Find the derivative of 4x².","8x","Use d(xⁿ)/dx = nxⁿ⁻¹."]
+],
+"Mathematical Literacy":[
+["Grade 10","Percentages","Find 20% of R750.","R150","0.20×750=150."],
+["Grade 11","Budget","Income is R9 000 and expenses are R6 400. Find the surplus.","R2 600","Subtract expenses from income."],
+["Grade 12","Interest","An amount of R2 000 increases by 10%. Find the new amount.","R2 200","Increase=R200; total=R2 200."]
+],
+"Physical Sciences":[
+["Grade 10","Motion","A car travels 100 m in 20 s. Find speed.","5 m/s","speed=distance/time."],
+["Grade 11","Forces","A 4 kg object accelerates at 3 m/s². Find force.","12 N","F=ma."],
+["Grade 12","Electricity","A 12 V supply is connected to 4 Ω. Find current.","3 A","I=V/R."]
+],
+"Life Sciences":[
+["Grade 10","Cells","Name the organelle associated with aerobic energy release.","Mitochondrion","Mitochondria are associated with aerobic cellular respiration."],
+["Grade 11","Genetics","What is an allele?","An alternative form of a gene","Alleles contribute to inherited variation."],
+["Grade 12","Meiosis","Why does meiosis increase genetic variation?","It includes processes such as crossing over and independent assortment","These processes create new combinations of genetic material."]
+],
+"Accounting":[
+["Grade 10","Accounting equation","Assets are R80 000 and liabilities are R25 000. Find equity.","R55 000","Equity=Assets−Liabilities."],
+["Grade 11","Adjustments","Why are year-end adjustments needed?","To record items in the correct accounting period","Adjustments improve the accuracy of financial information."],
+["Grade 12","Ratios","What does a profitability ratio help assess?","How effectively a business generates profit","Interpret the ratio together with context and comparisons."]
+],
+"Business Studies":[
+["Grade 10","Entrepreneurship","What is an entrepreneur?","A person who identifies opportunities and organises resources to create value","Entrepreneurs take calculated risks and solve problems."],
+["Grade 11","Leadership","Name one democratic leadership feature.","Employees participate in decision-making","Participation can improve engagement."],
+["Grade 12","Marketing","Name the four traditional marketing mix elements.","Product, Price, Place, Promotion","These are commonly called the 4 Ps."]
+],
+"Economics":[
+["Grade 10","Scarcity","Why does scarcity exist?","Resources are limited while human wants are extensive","Choices are therefore necessary."],
+["Grade 11","Demand","Name one factor that can shift demand.","Income","Other examples include tastes, prices of related goods and expectations."],
+["Grade 12","Inflation","What is inflation?","A sustained rise in the general price level","It reduces purchasing power when incomes do not keep pace."]
+],
+"Geography":[
+["Grade 10","Mapwork","What does a map scale show?","The relationship between map distance and real-world distance","Use the scale to convert measurements."],
+["Grade 11","Rivers","Name one river erosion process.","Hydraulic action","Other processes include abrasion, attrition and solution."],
+["Grade 12","GIS","What is GIS?","A system for capturing, storing, analysing and displaying geographically referenced information","GIS supports spatial decision-making."]
+],
+"History":[
+["Grade 10","Sources","What is a primary source?","Evidence produced during or close to the period being studied","Examples can include letters, photographs and official records."],
+["Grade 11","Evidence","Why should historians compare sources?","To test claims, identify differences and strengthen interpretation","Sources can be incomplete or biased."],
+["Grade 12","Essay","What makes a strong history thesis?","A clear argument that directly answers the question","Evidence should then support the argument."]
+],
+"Life Orientation":[
+["Grade 10","Wellbeing","Name two useful study habits.","Regular revision and practice questions","Good habits improve preparation over time."],
+["Grade 11","Goals","What does SMART mean?","Specific, Measurable, Achievable, Relevant, Time-bound","Use SMART goals to make plans clearer."],
+["Grade 12","Career planning","Name two things to research before choosing a course.","Entry requirements and career outcomes","Also compare costs, location and interests."]
+],
+"English Home Language":[
+["Grade 10","Comprehension","What is an inference?","A conclusion drawn from evidence and reasoning","Support it with details from the text."],
+["Grade 11","Literature","What is theme?","A central idea explored by a literary work","Explain how characters/events develop it."],
+["Grade 12","Writing","Why must audience be considered?","It affects tone, register, content and presentation","Choose language appropriate to the reader."]
+],
+"English First Additional Language":[
+["Grade 10","Reading","What is the main idea?","The central point of a text","Supporting details develop it."],
+["Grade 11","Summary","What should a summary contain?","The key ideas in concise form","Avoid unnecessary repetition."],
+["Grade 12","Writing","What is formal register?","Language appropriate for formal situations","Avoid unnecessary slang and informal shortcuts."]
+],
+"Afrikaans":[
+["Grade 10","Leesbegrip","Wat is die hoofgedagte?","Die belangrikste idee in die teks","Ondersteun dit met bewyse."],
+["Grade 11","Opsomming","Wat moet 'n opsomming bevat?","Die belangrikste idees kort en duidelik","Vermy onnodige herhaling."],
+["Grade 12","Skryfwerk","Waarom is register belangrik?","Dit pas taal by die doel en gehoor aan","Gebruik gepaste formele of informele taal."]
+],
+"Information Technology":[
+["Grade 10","Programming","What is a variable?","A named storage location for a value","The value can change during program execution."],
+["Grade 11","Testing","Why test boundary values?","They can reveal errors at limits","Test normal, boundary and invalid inputs."],
+["Grade 12","Databases","What is a primary key?","A field or combination that uniquely identifies a record","It should not duplicate another record's identifier."]
+],
+"Computer Applications Technology":[
+["Grade 10","Files","Why use folders?","To organise files so they are easier to find","Use meaningful names."],
+["Grade 11","Spreadsheets","What does SUM do?","Adds values","Example: =SUM(A1:A5)."],
+["Grade 12","Data","What is filtering?","Showing records that meet selected criteria","Filtering does not necessarily delete the other records."]
+],
+"Tourism":[
+["Grade 10","Tourism","Name three tourism sectors.","Accommodation, transport, attractions","Other sectors include travel services and activities."],
+["Grade 11","Itinerary","What should an itinerary contain?","Dates, times, places and activities","It should be realistic and organised."],
+["Grade 12","Sustainability","What is sustainable tourism?","Tourism that considers long-term environmental, social and economic impacts","Responsible choices reduce negative impacts."]
+],
+"Agricultural Sciences":[
+["Grade 10","Soil","Name one factor affecting soil productivity.","Fertility","Other factors include texture, structure, water and pH."],
+["Grade 11","Animal nutrition","Why is clean water important for livestock?","Water is essential for physiological functions and production","Poor water access can reduce health and performance."],
+["Grade 12","Breeding","What is selective breeding?","Choosing parents with desirable traits","The goal is to improve useful characteristics."]
+],
+"Consumer Studies":[
+["Grade 10","Budgeting","What is a budget?","A plan for expected income and spending","It helps prioritise needs and goals."],
+["Grade 11","Nutrition","Why is protein important?","It supports growth and tissue repair","Protein is one part of a balanced diet."],
+["Grade 12","Entrepreneurship","Why calculate costs before setting a price?","To know whether the price can cover costs and support a sustainable business","Include direct and relevant operating costs."]
+],
+"Engineering Graphics & Design":[
+["Grade 10","Drawing","Why are dimensions used?","To communicate exact sizes","Technical drawings use standard conventions."],
+["Grade 11","Projection","Why use multiple views?","Different views communicate different dimensions and features","Common views include front, top and side."],
+["Grade 12","CAD","What is CAD?","Computer-Aided Design","It supports accurate digital drafting and editing."]
+],
+"Visual Arts":[
+["Grade 10","Elements","Name three elements of art.","Line, colour, shape","Other elements include texture, form and space."],
+["Grade 11","Analysis","Why describe an artwork before interpreting it?","Description provides visual evidence for interpretation","Use art terminology."],
+["Grade 12","Portfolio","Why show development work?","It demonstrates experimentation and refinement","It helps explain how the final work developed."]
+],
+"Dramatic Arts":[
+["Grade 10","Character","How can movement communicate character?","Posture, gesture and movement can show personality, emotion or status","Performance choices should be intentional."],
+["Grade 11","Voice","Why can pace affect a performance?","It can change energy, tension and emphasis","Vary pace purposefully."],
+["Grade 12","Staging","How can staging affect an audience?","Positioning can control focus, relationships and visual meaning","Explain choices using drama terminology."]
+]
+};
+
+function loadBookSubjects(){
+const grade=document.getElementById('bookGrade').value;
+const select=document.getElementById('bookSubject');
+select.innerHTML='';
+Object.keys(topicLibrary).forEach(name=>{
+if(topicLibrary[name].some(x=>x[0]===grade)) select.innerHTML+=`<option>${name}</option>`;
+});
+loadBookTopics();
+}
+function loadBookTopics(){
+const subject=document.getElementById('bookSubject').value;
+const grade=document.getElementById('bookGrade').value;
+const topics=(topicLibrary[subject]||[]).filter(x=>x[0]===grade);
+const box=document.getElementById('bookTopics');
+box.innerHTML=topics.map((x,i)=>`<button onclick="renderBook(${i})">${x[1]}</button>`).join(' ');
+renderBook(0);
+}
+function renderBook(index=0){
+const subject=document.getElementById('bookSubject').value;
+const grade=document.getElementById('bookGrade').value;
+const mode=document.getElementById('bookMode').value;
+const topics=(topicLibrary[subject]||[]).filter(x=>x[0]===grade);
+if(!topics.length){document.getElementById('bookContent').innerHTML='<p>No topic loaded.</p>';return;}
+if(index>=topics.length) index=0;
+const x=topics[index];
+
+if(mode==="📖 Textbook"){
+document.getElementById('bookContent').innerHTML=`
+<div class="card subject"><h2>📖 ${x[1]}</h2>
+<p><strong>Lesson:</strong> ${x[2]}</p>
+<p><strong>Worked example:</strong> ${x[3]}</p>
+<h3>Key idea</h3><p>Understand the concept first, then practise applying it. Write important formulas, definitions and examples in your own notebook.</p>
+<h3>Study check</h3><p>Can you explain this topic without looking at the notes?</p></div>`;
+}
+else if(mode==="📝 Workbook"){
+document.getElementById('bookContent').innerHTML=`
+<div class="card"><h2>📝 Workbook — ${x[1]}</h2>
+<p><strong>Exercise 1:</strong> Explain the main idea of this topic in your own words.</p>
+<p><strong>Exercise 2:</strong> Work through this example: ${x[3]}</p>
+<p><strong>Exercise 3:</strong> ${x[4]}</p>
+<p><strong>Challenge:</strong> Create your own similar question and solve it.</p>
+<textarea id="workAnswer" rows="5" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ccd3df" placeholder="Write your answer here..."></textarea>
+<button onclick="saveWorkbook()">💾 Save Workbook Answer</button>
+<p id="saveMsg" class="small"></p></div>`;
+}
+else if(mode==="🧪 Test"){
+document.getElementById('bookContent').innerHTML=`
+<div class="quiz"><h2>🧪 Topic Test</h2>
+<p><strong>Question:</strong> ${x[4]}</p>
+<input id="testAnswer" placeholder="Type your answer">
+<button onclick="checkTestAnswer()">Check Answer</button>
+<p id="testResult"></p></div>`;
+}
+else{
+document.getElementById('bookContent').innerHTML=`
+<div class="card"><h2>✅ Memo — ${x[1]}</h2>
+<p><strong>Answer:</strong> ${x[3]}</p>
+<p><strong>Explanation:</strong> ${x[2]}</p>
+</div>`;
+}
+window.currentBookAnswer=x[3];
+}
+function checkTestAnswer(){
+const answer=document.getElementById('testAnswer').value.trim().toLowerCase();
+const correct=(window.currentBookAnswer||'').toLowerCase();
+const result=document.getElementById('testResult');
+if(answer && (correct.includes(answer)||answer.includes(correct))) result.innerHTML='✅ Correct! Keep going.';
+else result.innerHTML='❌ Not quite. Open MEMO to study the answer and explanation.';
+}
+function saveWorkbook(){
+localStorage.setItem('spaloWorkbookAnswer',document.getElementById('workAnswer').value);
+document.getElementById('saveMsg').innerText='Saved on this device. Keep practising!';
+}
+
+
+function useMathExample(text){
+  document.getElementById('mathInput').value=text;
+  solveMath();
+}
+
+function clearMathSolver(){
+  document.getElementById('mathInput').value='';
+  document.getElementById('mathResult').innerHTML='';
+}
+
+function formatNumber(n){
+  if(!Number.isFinite(n)) return String(n);
+  if(Math.abs(n-Math.round(n))<1e-10) return String(Math.round(n));
+  return String(Number(n.toFixed(10)));
+}
+
+function solveMath(){
+  const raw=document.getElementById('mathInput').value.trim();
+  const out=document.getElementById('mathResult');
+
+  if(!raw){
+    out.innerHTML='<p>✍️ Enter a maths problem first.</p>';
+    return;
+  }
+
+  let s=raw.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').trim();
+
+  // Bracketed linear equation support, e.g. 3(2x-5)+4=25.
+  const directLinear=s.replace(/\s+/g,'').match(
+    /^([+-]?\d*\.?\d*)\(([+-]?\d*\.?\d*)x([+-]\d*\.?\d+)?\)([+-]\d*\.?\d+)?=([+-]?\d*\.?\d+)$/
+  );
+  if(directLinear){
+    let a=directLinear[1];
+    if(a===''||a==='+') a=1; else if(a==='-') a=-1; else a=parseFloat(a);
+    let b=directLinear[2];
+    if(b===''||b==='+') b=1; else if(b==='-') b=-1; else b=parseFloat(b);
+    const c=directLinear[3]?parseFloat(directLinear[3]):0;
+    const d=directLinear[4]?parseFloat(directLinear[4]):0;
+    const e=parseFloat(directLinear[5]);
+    const A=a*b, B=a*c+d, rhs=e-B, x=rhs/A;
+    out.innerHTML=`
+      <h3>🧮 Linear Equation</h3>
+      <div class="solution-step"><strong>Step 1:</strong> Expand the brackets.</div>
+      <div class="solution-step"><strong>Step 2:</strong> ${formatNumber(A)}x ${B>=0?'+ '+formatNumber(B):'- '+formatNumber(Math.abs(B))} = ${formatNumber(e)}</div>
+      <div class="solution-step"><strong>Step 3:</strong> ${formatNumber(A)}x = ${formatNumber(rhs)}</div>
+      <div class="solution-step"><strong>Step 4:</strong> x = ${formatNumber(rhs)} ÷ ${formatNumber(A)}</div>
+      <div class="answer-box">Answer: x = ${formatNumber(x)}</div>`;
+    return;
+  }
+
+  // Percentage questions such as "20% of 750".
+  let pm=s.match(/^(-?\d+(?:\.\d+)?)\s*%\s*(?:of|×|\*)\s*(-?\d+(?:\.\d+)?)$/i);
+  if(pm){
+    const p=parseFloat(pm[1]), n=parseFloat(pm[2]), ans=p/100*n;
+    out.innerHTML=`
+      <h3>📘 Percentage</h3>
+      <div class="solution-step"><strong>Step 1:</strong> Convert ${p}% to a decimal: ${p}/100 = ${formatNumber(p/100)}</div>
+      <div class="solution-step"><strong>Step 2:</strong> Multiply: ${formatNumber(p/100)} × ${n} = ${formatNumber(ans)}</div>
+      <div class="answer-box">Answer: ${formatNumber(ans)}</div>`;
+    return;
+  }
+
+  // Simple linear equations ax+b=c, including x+a=b and ax=c.
+  let eq=s.replace(/\s+/g,'').match(/^([+-]?\d*\.?\d*)x([+-]\d*\.?\d+)?=([+-]?\d*\.?\d+)$/i);
+  if(eq){
+    let a=eq[1];
+    if(a==='' || a==='+') a=1;
+    else if(a==='-') a=-1;
+    else a=parseFloat(a);
+    const b=eq[2] ? parseFloat(eq[2]) : 0;
+    const c=parseFloat(eq[3]);
+
+    if(a===0){
+      out.innerHTML='<p>⚠️ This is not a valid linear equation in x.</p>';
+      return;
+    }
+
+    const rhs=c-b, x=rhs/a;
+    const bText=b>=0 ? ` + ${b}` : ` - ${Math.abs(b)}`;
+
+    out.innerHTML=`
+      <h3>📘 Linear Equation</h3>
+      <div class="solution-step"><strong>Step 1:</strong> Start with ${a}x${bText} = ${c}</div>
+      <div class="solution-step"><strong>Step 2:</strong> Move the constant: ${a}x = ${formatNumber(rhs)}</div>
+      <div class="solution-step"><strong>Step 3:</strong> Divide both sides by ${a}: x = ${formatNumber(rhs)} ÷ ${a}</div>
+      <div class="answer-box">Answer: x = ${formatNumber(x)}</div>`;
+    return;
+  }
+
+  // Simple arithmetic. Only permit digits, decimal points, spaces and operators.
+  if(/^[0-9+\-*/().%\s]+$/.test(s) && /[0-9]/.test(s)){
+    try{
+      if(s.includes('%')){
+        out.innerHTML='<p>💡 For percentages, try: <strong>20% of 750</strong>.</p>';
+        return;
+      }
+      const answer=Function('"use strict";return ('+s+')')();
+      if(Number.isFinite(answer)){
+        out.innerHTML=`
+          <h3>📘 Arithmetic</h3>
+          <div class="solution-step"><strong>Expression:</strong> ${s}</div>
+          <div class="solution-step"><strong>Calculation:</strong> Follow multiplication/division before addition/subtraction.</div>
+          <div class="answer-box">Answer: ${formatNumber(answer)}</div>`;
+        return;
+      }
+    }catch(e){}
+  }
+
+  out.innerHTML=`
+    <div class="card">
+      <h3>🤔 I need a simpler expression</h3>
+      <p>Try one of these formats:</p>
+      <ul>
+        <li><strong>2x + 5 = 17</strong></li>
+        <li><strong>3x + 6 = 21</strong></li>
+        <li><strong>20% of 750</strong></li>
+        <li><strong>3 * 4 + 5</strong></li>
+      </ul>
+    </div>`;
+}
+
+
+let activeTest=[], testScore=0, testAnswered=0;
+
+function loadTestBookSubjects(){
+  const grade=document.getElementById('tbGrade').value;
+  const sel=document.getElementById('tbSubject');
+  sel.innerHTML='';
+  Object.keys(topicLibrary).forEach(name=>{
+    if(topicLibrary[name].some(x=>x[0]===grade)){
+      sel.innerHTML += `<option>${name}</option>`;
+    }
+  });
+  loadTestBookTopics();
+}
+
+function loadTestBookTopics(){
+  const grade=document.getElementById('tbGrade').value;
+  const subject=document.getElementById('tbSubject').value;
+  const topics=(topicLibrary[subject]||[]).filter(x=>x[0]===grade);
+  document.getElementById('tbInfo').innerHTML =
+    `<p><strong>${subject}</strong> • ${grade} • ${topics.length} topic pack(s) available.</p>`;
+  document.getElementById('tbQuestions').innerHTML='';
+  document.getElementById('tbResult').innerHTML='';
+}
+
+function makeGeneratedQuestion(item, index){
+  const grade=item[0], topic=item[1], lesson=item[2], example=item[3], practice=item[4];
+  return {
+    q:`${topic}: ${practice}`,
+    answer: example,
+    options:[example, lesson, 'Not covered in this topic pack', 'None of the above'],
+    explanation:`${lesson} Worked example: ${example}`
+  };
+}
+
+function buildTestBank(grade, subject){
+  const bank=[];
+  const topics=(topicLibrary[subject]||[]).filter(x=>x[0]===grade);
+
+  topics.forEach((x,i)=>{
+    bank.push(makeGeneratedQuestion(x,i));
+  });
+
+  // Add existing book questions for the selected grade and subject.
+  (bookQuestions[subject]||[]).forEach(x=>{
+    if(x[0]===grade){
+      bank.push({
+        q:`${x[1]}: ${x[2]}`,
+        answer:x[3],
+        options:[x[3], x[4], 'Not enough information', 'None of these'],
+        explanation:x[4]
+      });
+    }
+  });
+
+  // Add the site's quiz questions where available.
+  (quizzes[subject]||[]).forEach(x=>{
+    bank.push({
+      q:x[0],
+      answer:x[1],
+      options:x[2],
+      explanation:`Correct answer: ${x[1]}.`
+    });
+  });
+
+  // Shuffle and remove exact duplicate question text.
+  const seen=new Set(), unique=[];
+  bank.sort(()=>Math.random()-0.5).forEach(q=>{
+    if(!seen.has(q.q)){seen.add(q.q);unique.push(q);}
+  });
+  return unique;
+}
+
+function startTestBook(){
+  const grade=document.getElementById('tbGrade').value;
+  const subject=document.getElementById('tbSubject').value;
+  const length=document.getElementById('tbLength').value;
+
+  let bank=buildTestBank(grade,subject);
+  if(!bank.length){
+    document.getElementById('tbQuestions').innerHTML='<p>No test questions are available for this selection yet.</p>';
+    return;
+  }
+
+  if(length!=='all') bank=bank.slice(0,Number(length));
+
+  activeTest=bank;
+  testScore=0;
+  testAnswered=0;
+
+  document.getElementById('tbInfo').innerHTML=
+    `<p><strong>${subject}</strong> • ${grade} • ${activeTest.length} questions • 1 mark each</p>`;
+  document.getElementById('tbResult').innerHTML='';
+
+  const box=document.getElementById('tbQuestions');
+  box.innerHTML='';
+
+  activeTest.forEach((q,i)=>{
+    const div=document.createElement('div');
+    div.className='test-question';
+    div.dataset.done='0';
+    div.innerHTML=`<strong>${i+1}. ${q.q}</strong>`;
+
+    const shuffled=[...q.options].sort(()=>Math.random()-0.5);
+    shuffled.forEach(option=>{
+      const b=document.createElement('button');
+      b.className='test-option';
+      b.innerText=option;
+      b.onclick=()=>answerTestQuestion(div,b,option,q,i);
+      div.appendChild(b);
+    });
+
+    box.appendChild(div);
+  });
+}
+
+function answerTestQuestion(parent,btn,chosen,q,index){
+  if(parent.dataset.done==='1') return;
+  parent.dataset.done='1';
+  testAnswered++;
+
+  if(chosen===q.answer){
+    btn.classList.add('correct');
+    testScore++;
+  }else{
+    btn.classList.add('wrong');
+    [...parent.querySelectorAll('button')].forEach(b=>{
+      if(b.innerText===q.answer) b.classList.add('correct');
+    });
+  }
+
+  const explanation=document.createElement('div');
+  explanation.className='small';
+  explanation.innerHTML=`<strong>Memo:</strong> ${q.explanation}`;
+  parent.appendChild(explanation);
+
+  const total=activeTest.length;
+  const pct=Math.round(testScore/total*100);
+  document.getElementById('tbResult').innerHTML=
+    `<div class="test-result">Current score: ${testScore}/${total} (${pct}%) — ${testAnswered}/${total} answered.</div>`;
+
+  if(testAnswered===total){
+    const status=pct>=50?'✅ PASS':'📖 REVIEW & TRY AGAIN';
+    document.getElementById('tbResult').innerHTML=
+      `<div class="test-result">Final Result: ${testScore}/${total} • ${pct}% • ${status}<br><span class="small">Review every mistake before taking the test again.</span></div>`;
+  }
+}
+
+function resetTestBook(){
+  activeTest=[]; testScore=0; testAnswered=0;
+  document.getElementById('tbQuestions').innerHTML='';
+  document.getElementById('tbResult').innerHTML='';
+  loadTestBookTopics();
+}
+
+
+function clearAsk(){
+  document.getElementById('askInput').value='';
+  document.getElementById('askAnswer').innerHTML='';
+}
+
+function askSpalo(){
+  const q=document.getElementById('askInput').value.trim();
+  const out=document.getElementById('askAnswer');
+
+  if(!q){
+    out.innerHTML='<div class="answer-area">✍️ Ask a question first.</div>';
+    return;
+  }
+
+  const lower=q.toLowerCase();
+  let subject='';
+
+  for(const s of subjects){
+    if(lower.includes(s[0].toLowerCase())){ subject=s[0]; break; }
+  }
+
+  let response='';
+  if(subject && topicLibrary[subject]){
+    const grade=document.getElementById('tbGrade')?.value || 'Grade 10';
+    const topics=(topicLibrary[subject]||[]).filter(x=>x[0]===grade);
+    if(topics.length){
+      response=`I found material for ${subject} in ${grade}.\n\n`+
+        topics.map(x=>`📘 ${x[1]}\nLesson: ${x[2]}\nWorked example: ${x[3]}\nPractice: ${x[4]}`).join('\n\n');
+    }
+  }
+
+  if(!response && lower.includes('test')){
+    response='🧪 Use Test Books to choose a grade, subject and test length. The system can automatically mark answers and show the memo/explanation after each question.';
+  }
+
+  if(!response && (lower.includes('research') || lower.includes('source'))){
+    response='🔎 Open Research from the menu. Enter your research question and use reliable sources. Compare information and keep a record of your sources.';
+  }
+
+  if(!response){
+    response=`🤖 Spalo Study Helper\n\nI can help you with:\n• Grade 10–12 subjects\n• Test Books and practice questions\n• Lessons and worked examples\n• Mathematics problems\n• Research planning\n• Oxford learner resources\n• Study and exam preparation\n\nFor a question that needs current information, open Research and search online sources.`;
+  }
+
+  out.innerHTML='<div class="answer-area"><strong>Spalo:</strong>\n'+response+'</div>';
+}
+
+function runResearch(){
+  const q=document.getElementById('researchInput').value.trim();
+  const box=document.getElementById('researchLinks');
+  if(!q){
+    box.innerHTML='<p>✍️ Enter a research topic first.</p>';
+    return;
+  }
+
+  const encoded=encodeURIComponent(q);
+  box.innerHTML=`
+    <div class="card">
+      <h3>🔎 Research results</h3>
+      <p>Open the search results and compare reliable sources.</p>
+      <p>
+        <a class="btn" target="_blank" href="https://www.google.com/search?q=${encoded}">Google Search</a>
+        <a class="btn" target="_blank" href="https://www.bing.com/search?q=${encoded}">Bing Search</a>
+        <a class="btn" target="_blank" href="https://www.google.com/search?q=site%3Aoxfordlearnersdictionaries.com+${encoded}">Search Oxford</a>
+      </p>
+      <span class="source-chip">Check author</span>
+      <span class="source-chip">Check date</span>
+      <span class="source-chip">Compare sources</span>
+      <span class="source-chip">Record references</span>
+    </div>`;
+}
+
+
+function normalizeAIText(s){
+  return String(s||'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function aiScoreQuestion(question, record){
+  const q=normalizeAIText(question);
+  const text=normalizeAIText([
+    record.q, record.answer, record.explanation, record.topic, record.lesson
+  ].join(' '));
+
+  const words=q.split(' ').filter(w=>w.length>2);
+  let score=0;
+  words.forEach(w=>{
+    if(text.includes(w)) score++;
+  });
+
+  // Give extra weight to exact phrases and subject/topic names.
+  if(q && text.includes(q)) score += 8;
+  return score;
+}
+
+function collectTestBookKnowledge(){
+  const records=[];
+
+  // Built-in History essay knowledge: South African War (1899–1902).
+  records.push({
+    subject:"History",
+    grade:"Grade 10",
+    topic:"South African War (1899–1902)",
+    lesson:"Causes, course and consequences of the South African War",
+    q:"Discuss the causes, course and consequences of the South African War (1899–1902).",
+    answer:"The South African War was fought from 1899 to 1902 between the British Empire and the two Boer republics, the South African Republic (Transvaal) and the Orange Free State. Major causes included conflict over British imperial control, political rights and the Uitlander question, as well as competition and tension linked to the discovery of gold. The war began in 1899. Boer forces initially achieved important victories, but Britain mobilised larger forces and eventually occupied the Boer capitals. The conflict then developed into guerrilla warfare, and British forces used scorched-earth policies and concentration camps. The war ended with the Treaty of Vereeniging in 1902. The Boer republics accepted British sovereignty, while the war caused extensive destruction, loss of life and major political changes in South Africa.",
+    explanation:"For an essay, organise the answer into three parts: causes (why the war started), course (what happened during the war), and consequences (what changed after the war). Always connect each paragraph directly to the essay question."
+  });
+
+
+  // Topic library: this is the core Test Book/lesson knowledge.
+  Object.keys(topicLibrary||{}).forEach(subject=>{
+    (topicLibrary[subject]||[]).forEach(x=>{
+      records.push({
+        subject:subject,
+        grade:x[0],
+        topic:x[1],
+        lesson:x[2],
+        q:x[4],
+        answer:x[3],
+        explanation:`Lesson: ${x[2]}\nWorked example: ${x[3]}\nPractice: ${x[4]}`
+      });
+    });
+  });
+
+  // Workbook/test material already in the site.
+  Object.keys(bookQuestions||{}).forEach(subject=>{
+    (bookQuestions[subject]||[]).forEach(x=>{
+      records.push({
+        subject:subject,
+        grade:x[0],
+        topic:x[1],
+        lesson:'',
+        q:x[2],
+        answer:x[3],
+        explanation:x[4]
+      });
+    });
+  });
+
+  // Existing quizzes.
+  Object.keys(quizzes||{}).forEach(subject=>{
+    (quizzes[subject]||[]).forEach(x=>{
+      records.push({
+        subject:subject,
+        grade:'',
+        topic:'Quiz',
+        lesson:'',
+        q:x[0],
+        answer:x[1],
+        explanation:`Correct answer: ${x[1]}`
+      });
+    });
+  });
+
+  return records;
+}
+
+function solveStudentMath(question){
+  let s=question
+    .replace(/Solve for x\s*:?/ig,'')
+    .replace(/solve\s+x\s*:?/ig,'')
+    .replace(/×/g,'*')
+    .replace(/−/g,'-')
+    .trim();
+
+  // Linear equations of the form a(bx+c)+d=e, including
+  // 3(2x-5)+4=25.
+  const match=s.replace(/\s+/g,'').match(
+    /^([+-]?\d*\.?\d*)\(([+-]?\d*\.?\d*)x([+-]\d*\.?\d+)?\)([+-]\d*\.?\d+)?=([+-]?\d*\.?\d+)$/
+  );
+
+  if(match){
+    let a=match[1];
+    if(a===''||a==='+') a=1;
+    else if(a==='-') a=-1;
+    else a=parseFloat(a);
+
+    let b=match[2];
+    if(b===''||b==='+') b=1;
+    else if(b==='-') b=-1;
+    else b=parseFloat(b);
+
+    const c=match[3] ? parseFloat(match[3]) : 0;
+    const d=match[4] ? parseFloat(match[4]) : 0;
+    const e=parseFloat(match[5]);
+
+    const A=a*b;
+    const B=a*c+d;
+    const rhs=e-B;
+
+    if(A!==0){
+      const x=rhs/A;
+      const inner=(b===1?'x':b===-1?'-x':b+'x')+
+        (c===0?'':c>0?' + '+c:' - '+Math.abs(c));
+      const expandedA=A===1?'':A===-1?'-':String(A);
+
+      return {
+        type:'math',
+        title:'🧮 Mathematics — Linear Equation',
+        answer:'x = '+formatNumber(x),
+        steps:[
+          `Original equation: ${question.trim()}`,
+          `Expand the brackets: ${expandedA}x${B>=0?' + '+formatNumber(B):' - '+formatNumber(Math.abs(B))} = ${formatNumber(e)}`,
+          `Move the constant: ${expandedA}x = ${formatNumber(rhs)}`,
+          `Divide by ${A}: x = ${formatNumber(rhs)} ÷ ${formatNumber(A)}`,
+          `Therefore, x = ${formatNumber(x)}`
+        ]
+      };
+    }
+  }
+
+  // Also handle simple ax+b=c.
+  const simple=s.replace(/\s+/g,'').match(/^([+-]?\d*\.?\d*)x([+-]\d*\.?\d+)?=([+-]?\d*\.?\d+)$/);
+  if(simple){
+    let a=simple[1];
+    if(a===''||a==='+') a=1;
+    else if(a==='-') a=-1;
+    else a=parseFloat(a);
+    const b=simple[2]?parseFloat(simple[2]):0;
+    const c=parseFloat(simple[3]);
+    if(a!==0){
+      const rhs=c-b, x=rhs/a;
+      return {
+        type:'math',
+        title:'🧮 Mathematics — Linear Equation',
+        answer:'x = '+formatNumber(x),
+        steps:[
+          `Original equation: ${question.trim()}`,
+          `Move the constant: ${formatNumber(a)}x = ${formatNumber(rhs)}`,
+          `Divide by ${formatNumber(a)}: x = ${formatNumber(rhs)} ÷ ${formatNumber(a)}`,
+          `Therefore, x = ${formatNumber(x)}`
+        ]
+      };
+    }
+  }
+
+  return null;
+}
+
+function studentAIAnswer(){
+  const question=document.getElementById('aiQuestion').value.trim();
+  const out=document.getElementById('aiAnswer');
+  const sources=document.getElementById('aiSources');
+
+  if(!question){
+    out.innerHTML='<div class="answer-area">✍️ Ask your question first.</div>';
+    sources.innerHTML='';
+    return;
+  }
+
+  // IMPORTANT: solve an actual calculation first. Do not substitute
+  // a similar Test Book question for the student's question.
+  const math=solveStudentMath(question);
+  if(math){
+    out.innerHTML=`
+      <div class="answer-area">
+        <strong>${math.title}</strong><br><br>
+        ${math.steps.map((step,i)=>`<strong>Step ${i+1}:</strong> ${step}`).join('<br><br>')}
+        <br><br>
+        <div class="answer-box">✅ Final Answer: ${math.answer}</div>
+      </div>`;
+    sources.innerHTML='<span class="source-chip">Solved directly from the student question</span>';
+    return;
+  }
+
+  // For non-maths questions, search the Test Book knowledge.
+  const records=collectTestBookKnowledge();
+  const ranked=records.map(r=>({r,score:aiScoreQuestion(question,r)}))
+    .filter(x=>x.score>0)
+    .sort((a,b)=>b.score-a.score)
+    .slice(0,5);
+
+  if(ranked.length===0){
+    out.innerHTML=`
+      <div class="answer-area">
+        <strong>Spalo Student AI:</strong><br><br>
+        I could not find enough information in the Test Books currently stored in this website to answer that question accurately.<br><br>
+        Try the <strong>Research Online</strong> section for information outside the Test Books.
+      </div>`;
+    sources.innerHTML='<span class="source-chip">No matching Test Book material found</span>';
+    return;
+  }
+
+  const best=ranked[0].r;
+  let answer=`<strong>Spalo Student AI — Test Book answer</strong><br><br>`;
+  answer+=`Subject: ${best.subject}`;
+  if(best.grade) answer+=` • ${best.grade}`;
+  if(best.topic) answer+=`<br>Topic: ${best.topic}`;
+  answer+=`<br><br>${best.answer || best.explanation}`;
+
+  if(best.explanation && best.explanation!==best.answer){
+    answer+=`<br><br><strong>Explanation / working:</strong><br>${best.explanation}`;
+  }
+
+  answer+=`<br><br><strong>Study tip:</strong> Try a similar Test Book question without looking at the memo.`;
+
+  out.innerHTML=`<div class="answer-area">${answer}</div>`;
+  sources.innerHTML='<strong>Matched Test Book material:</strong> '+
+    ranked.map(x=>`<span class="source-chip">${x.r.subject}${x.r.grade?' • '+x.r.grade:''}${x.r.topic?' • '+x.r.topic:''}</span>`).join('');
+}
+
+
+const essayQuestions=[
+  "Discuss the causes, course and consequences of the South African War (1899–1902).",
+  "Discuss the importance of education in a young person's life.",
+  "Discuss the advantages and disadvantages of social media for students.",
+  "Should learners be allowed to use artificial intelligence for schoolwork? Discuss.",
+  "Explain how young people can help protect the environment.",
+  "Discuss the importance of discipline in achieving success.",
+  "Write an essay about the challenges facing young people today."
+];
+
+function showEssayQuestion(){
+  const q=essayQuestions[Math.floor(Math.random()*essayQuestions.length)];
+  document.getElementById('essayTopic').value=q;
+  document.getElementById('essayOutput').innerHTML=
+    `<div class="essay-box"><strong>Essay question:</strong><br>${q}</div>`;
+}
+
+
+const spaloEssayKnowledge = [
+  {
+    keywords:["south african war","boer war","anglo-boer","1899","1902"],
+    subject:"History",
+    title:"South African War (1899–1902)",
+    explanation:"This essay should be organised around three ideas: causes, course and consequences. Causes explain why the war began; the course explains what happened during the conflict; consequences explain what changed after the war.",
+    points:[
+      "British imperial control and political tensions in southern Africa.",
+      "The Uitlander question and disagreements over political rights.",
+      "Gold and economic competition increased tensions.",
+      "The war began in 1899; Boer forces initially achieved important victories.",
+      "Britain later increased its forces and occupied important Boer centres.",
+      "The conflict developed into guerrilla warfare.",
+      "British scorched-earth policies and concentration camps caused severe suffering.",
+      "The war ended with the Treaty of Vereeniging in 1902.",
+      "The war caused destruction, loss of life and major political changes."
+    ]
+  },
+  {
+    keywords:["climate change","global warming","environment"],
+    subject:"Geography",
+    title:"Climate Change",
+    explanation:"A strong essay explains causes, effects and possible responses. Use a clear argument and real examples where appropriate.",
+    points:[
+      "Human activities such as burning fossil fuels increase greenhouse-gas emissions.",
+      "Deforestation can reduce carbon absorption.",
+      "Effects include changing rainfall, heat, droughts, floods and risks to ecosystems.",
+      "People, agriculture and infrastructure can be affected.",
+      "Responses include reducing emissions, renewable energy, adaptation and environmental protection."
+    ]
+  },
+  {
+    keywords:["education","importance of education","school"],
+    subject:"General",
+    title:"Importance of Education",
+    explanation:"Education can be discussed as a way to build knowledge, skills, confidence and opportunities.",
+    points:[
+      "Education develops knowledge and practical skills.",
+      "It can improve opportunities for further study and employment.",
+      "It can build communication, critical thinking and problem-solving skills.",
+      "Education can help young people make informed decisions.",
+      "A balanced essay should also recognise barriers such as unequal access to resources."
+    ]
+  }
+];
+
+function findEssayKnowledge(q){
+  const s=q.toLowerCase();
+  let best=null, score=0;
+  spaloEssayKnowledge.forEach(item=>{
+    const n=item.keywords.filter(k=>s.includes(k)).length;
+    if(n>score){score=n; best=item;}
+  });
+  return best;
+}
+
+function essaySafeParagraph(text){
+  return text.split(/\n\s*\n/).map(p=>`<p>${p}</p>`).join("");
+}
+
+function runEssayAI(){
+  const q=document.getElementById("essayAiQuestion").value.trim();
+  const mode=document.getElementById("essayAiMode").value;
+  const grade=document.getElementById("essayAiGrade").value;
+  const subject=document.getElementById("essayAiSubject").value;
+  const out=document.getElementById("essayAiOutput");
+
+  if(!q && mode!=="topic"){
+    out.innerHTML='<div class="essay-box">😊 No problem. Type your essay question and I will help you step by step.</div>';
+    return;
+  }
+
+  if(mode==="topic"){
+    const topics={
+      English:"Discuss how social media influences young people.",
+      History:"Discuss the causes and consequences of a major historical event.",
+      Geography:"Discuss the causes and effects of climate change.",
+      "Life Orientation":"Discuss how young people can make responsible decisions about their future.",
+      General:"Discuss the importance of education in a young person's life."
+    };
+    out.innerHTML=`<div class="essay-answer"><h3>💡 Your Essay Topic</h3><p>${topics[subject]||topics.General}</p><p><strong>Tip:</strong> Start by identifying the key words in the question.</p></div>`;
+    return;
+  }
+
+  const k=findEssayKnowledge(q);
+  const title=k?k.title:q;
+
+  if(mode==="explain"){
+    const explanation=k?k.explanation:"First identify what the question is asking. Break it into key words, then explain each main idea with a relevant example.";
+    const points=k?k.points:[
+      "Introduction: explain the topic and your main focus.",
+      "Body paragraph 1: develop the first main idea.",
+      "Body paragraph 2: develop the second main idea.",
+      "Body paragraph 3: develop another important idea or perspective.",
+      "Conclusion: summarise the argument and answer the question."
+    ];
+    out.innerHTML=`<div class="essay-answer"><h3>😊 Simple Explanation — ${title}</h3><p>${explanation}</p><h4>Key points to understand</h4><ul>${points.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+    return;
+  }
+
+  if(mode==="plan"){
+    const points=k?k.points:[
+      "Introduction — introduce the topic and answer the question.",
+      "Body paragraph 1 — first main point + evidence + explanation.",
+      "Body paragraph 2 — second main point + evidence + explanation.",
+      "Body paragraph 3 — third point or another perspective + explanation.",
+      "Conclusion — summarise and give a strong final statement."
+    ];
+    out.innerHTML=`<div class="essay-answer"><h3>📝 Easy Essay Plan</h3><p><strong>Question:</strong> ${q}</p><ol>${points.map(x=>`<li>${x}</li>`).join("")}</ol><p><strong>Remember:</strong> Point → Evidence/Example → Explanation.</p></div>`;
+    return;
+  }
+
+  if(mode==="intro"){
+    out.innerHTML=`<div class="essay-answer"><h3>✍️ Introduction Helper</h3><p>Start by introducing <strong>${title}</strong>. Give brief background, then state the main argument or purpose of your essay.</p><p><strong>Easy formula:</strong> Background → Focus → Main argument.</p><p><strong>Starter:</strong> “This essay examines ${q.replace(/\.$/,"").toLowerCase()} and explains the main factors, evidence and consequences that help answer the question.”</p></div>`;
+    return;
+  }
+
+  if(mode==="paragraph"){
+    const points=k?k.points.slice(0,3):[
+      "Make one clear point.",
+      "Give a relevant example or piece of evidence.",
+      "Explain how the example supports the point."
+    ];
+    out.innerHTML=`<div class="essay-answer"><h3>📚 Build Your Body Paragraphs</h3>${points.map((p,i)=>`<p><strong>Paragraph ${i+1}:</strong> ${p}<br><strong>Use:</strong> Point → Evidence/Example → Explanation → Link to the question.</p>`).join("")}</div>`;
+    return;
+  }
+
+  if(mode==="conclusion"){
+    out.innerHTML=`<div class="essay-answer"><h3>🏁 Conclusion Helper</h3><p>Do not introduce a completely new argument. Briefly bring together your main points and answer the question clearly.</p><p><strong>Easy formula:</strong> In summary → main points → final judgement.</p></div>`;
+    return;
+  }
+
+  if(mode==="feedback"){
+    const words=q.split(/\s+/).filter(Boolean).length;
+    const positives=[];
+    if(words>=50) positives.push("Your essay has enough material to review.");
+    if(/[.!?]/.test(q)) positives.push("You are using complete sentences.");
+    out.innerHTML=`<div class="essay-answer"><h3>❤️ Friendly Essay Feedback</h3><p>${positives.length?positives.join(" "):"Start with a clear introduction and develop your ideas in separate paragraphs."}</p><h4>Improve these areas</h4><ul><li>Make sure every paragraph answers the question.</li><li>Add specific evidence or examples.</li><li>Explain why each example matters.</li><li>Check spelling, grammar and paragraph structure.</li></ul><p><strong>Keep going:</strong> mistakes are part of learning. ✨</p></div>`;
+    return;
+  }
+
+  // Full model essay — use stored topic knowledge when available.
+  const cleanQuestion = q.replace(/\.$/,"");
+  let paragraphs = [];
+
+  if(k && k.title === "Climate Change"){
+    paragraphs = [
+      "Climate change is one of the major environmental challenges facing the world today. It refers to long-term changes in temperature and weather patterns. Human activities have increased the amount of greenhouse gases in the atmosphere, making the issue increasingly important.",
+      "One major cause of climate change is the burning of fossil fuels such as coal, oil and gas. These fuels release greenhouse gases when they are used for electricity, transport and industry. These gases trap heat in the atmosphere and contribute to global warming.",
+      "Deforestation is another important cause. Trees absorb carbon dioxide from the atmosphere, so removing large areas of forest reduces the Earth's ability to absorb this greenhouse gas. Land-use changes can therefore make the problem worse.",
+      "Climate change has many effects. These include changing rainfall patterns, more frequent or intense heat, droughts and floods, as well as risks to ecosystems. People, agriculture, water supplies and infrastructure can all be affected.",
+      "The effects of climate change mean that communities need both mitigation and adaptation. Mitigation includes reducing greenhouse-gas emissions and using cleaner sources of energy. Adaptation means preparing communities for changes that are already happening or are expected to happen.",
+      "In conclusion, climate change is driven largely by human activities such as burning fossil fuels and deforestation, and it can have serious environmental and social effects. Reducing emissions while preparing communities for unavoidable changes is important for the future."
+    ];
+  } else if(k && k.title === "South African War (1899–1902)"){
+    paragraphs = [
+      "The South African War, fought from 1899 to 1902, was a major conflict involving the British Empire and the Boer republics. The war developed from political, economic and imperial tensions in southern Africa. Its causes, course and consequences had a lasting impact on the region.",
+      "One important cause was the struggle over political power and British imperial control. Tensions also developed around the rights of Uitlanders in the Transvaal. Economic interests linked to the goldfields added to the conflict between different political interests.",
+      "The war began in 1899. Boer forces initially achieved important victories, but Britain increased its military strength and occupied major Boer centres. The conflict later changed into guerrilla warfare, in which smaller Boer groups used mobile attacks against British forces.",
+      "Britain responded to the guerrilla campaign with harsh measures, including scorched-earth policies and concentration camps. These policies caused widespread suffering among civilians and had serious humanitarian consequences.",
+      "The war ended with the Treaty of Vereeniging in 1902. The conflict caused loss of life, destruction and economic hardship. It also changed political relationships in southern Africa and contributed to the developments that eventually shaped the Union of South Africa.",
+      "In conclusion, the South African War resulted from a combination of political, economic and imperial tensions. Its course changed from conventional fighting to guerrilla warfare, while its consequences included suffering, destruction and major political changes in southern Africa."
+    ];
+  } else {
+    paragraphs = [
+      `The essay question asks us to consider: ${cleanQuestion}. A strong response should define the topic clearly, identify the main issues and keep every paragraph focused on the question.`,
+      "The first main idea should be introduced clearly and supported with a relevant example or piece of evidence. The writer should then explain why that evidence matters and how it answers the question.",
+      "The second main idea should develop the argument rather than simply repeat the first point. A useful paragraph follows a simple structure: point, evidence or example, explanation, and a link back to the question.",
+      "A third paragraph can develop another important factor, consequence, example or perspective. This helps the essay become more balanced and shows that the writer understands the topic rather than memorising isolated facts.",
+      "The conclusion should bring the main ideas together and answer the question directly. It should not introduce a completely new argument.",
+      `In conclusion, a successful answer to “${cleanQuestion}” is clear, organised and supported by relevant evidence. The most important goal is to understand the topic and explain it in your own words.`
+    ];
+  }
+
+  out.innerHTML=`<div class="essay-answer"><h3>📖 Full Model Essay — ${grade}</h3>${essaySafeParagraph(paragraphs)}<hr><p><strong>❤️ Study tip:</strong> Use this as a learning model. Read each paragraph, understand the idea, and then practise writing your own version in your own words.</p></div>`;
+}
+
+function essayAiExample(){
+  document.getElementById("essayAiQuestion").value="Discuss the causes, course and consequences of the South African War (1899–1902).";
+  document.getElementById("essayAiMode").value="explain";
+  runEssayAI();
+}
+
+function generateEssay(){
+  const topic=document.getElementById('essayTopic').value.trim();
+  const grade=document.getElementById('essayGrade').value;
+  const selectedType=document.getElementById('essayType').value;
+  const out=document.getElementById('essayOutput');
+
+  if(!topic){
+    out.innerHTML='<div class="essay-box">✍️ Enter an essay question first.</div>';
+    return;
+  }
+
+  const lower=topic.toLowerCase();
+  const isSAWar =
+    lower.includes('south african war') ||
+    lower.includes('anglo-boer war') ||
+    lower.includes('boer war') ||
+    (lower.includes('1899') && lower.includes('1902'));
+
+  if(isSAWar){
+    const essay = `The South African War, fought from 1899 to 1902, was a major conflict between the British Empire and the two Boer republics, the South African Republic (Transvaal) and the Orange Free State. The war developed from growing political, economic and imperial tensions in southern Africa. Its causes, the events of the war and its consequences all had a lasting impact on the history of South Africa.
+
+One important cause of the war was the struggle over British imperial control and political power in southern Africa. Tensions also increased because of the Uitlander question. Many foreign workers, particularly people attracted to the goldfields, lived in the Transvaal, and disagreements developed over their political rights and treatment. The discovery of gold also increased economic competition and political tension. These disputes contributed to the breakdown of relations between Britain and the Boer republics and helped lead to war in 1899.
+
+The course of the war changed over time. At the beginning, Boer forces achieved important victories against the British. Britain then sent more soldiers and resources to southern Africa. British forces captured important towns and eventually occupied the Boer capitals. The Boer fighters then changed to guerrilla warfare, using smaller mobile units to attack British forces. Britain responded with scorched-earth policies and concentration camps in an attempt to weaken Boer resistance. These measures caused widespread suffering and destruction.
+
+The consequences of the war were severe. The conflict ended with the Treaty of Vereeniging in 1902, and the Boer republics accepted British sovereignty. Farms, homes and economic resources had been badly damaged, and many people died during the conflict and its aftermath. The war also changed the political relationship between British authorities and Afrikaner communities and became an important part of the political history that followed in South Africa.
+
+In conclusion, the South African War was caused by a combination of imperial, political and economic tensions. The war moved from conventional battles to guerrilla warfare before ending in 1902. Its consequences included political change, destruction and human suffering. Understanding the causes, course and consequences of the war helps explain important developments in South African history.`;
+
+    const explanation = `<strong>How to understand this essay:</strong><br><br>
+      <strong>1. Introduction:</strong> Identifies the war, dates, sides and the three areas the essay will discuss.<br><br>
+      <strong>2. Causes:</strong> Explains British imperial control, the Uitlander question, gold and growing political/economic tension.<br><br>
+      <strong>3. Course:</strong> Explains the early Boer victories, British mobilisation, occupation, guerrilla warfare, scorched-earth policies and concentration camps.<br><br>
+      <strong>4. Consequences:</strong> Explains the Treaty of Vereeniging, British sovereignty, destruction, loss of life and political change.<br><br>
+      <strong>5. Conclusion:</strong> Brings the causes, course and consequences together and answers the question directly.`;
+
+    out.innerHTML=`
+      <div class="essay-box">
+        <strong>ESSAY QUESTION</strong><br>${topic}
+        <p><strong>GRADE:</strong> ${grade}</p>
+        <p><strong>ESSAY TYPE:</strong> History / Discursive</p>
+      </div>
+      <div class="essay-answer">
+        <h3>🇿🇦 Full Essay</h3>
+        ${essay.split('\\n\\n').map(p=>`<p>${p}</p>`).join('')}
+        <hr>
+        <h3>📚 Explanation & Study Guide</h3>
+        <p>${explanation}</p>
+        <h3>📝 Student checklist</h3>
+        <p>✓ Answer causes, course and consequences<br>
+        ✓ Use historical evidence<br>
+        ✓ Explain why each point matters<br>
+        ✓ Keep paragraphs focused<br>
+        ✓ Finish with a clear conclusion</p>
+      </div>`;
+    return;
+  }
+
+  const type = selectedType === 'Literary analysis' ? 'Discursive / Expository' : selectedType;
+
+  const guide =
+`ESSAY QUESTION
+${topic}
+
+GRADE
+${grade}
+
+ESSAY TYPE
+${type}
+
+INTRODUCTION
+Start by introducing the topic clearly. Explain why the issue is important and state the main idea or position that the essay will develop.
+
+BODY PARAGRAPH 1
+Main point: Identify the first important idea related to the question.
+Evidence/example: Give a relevant example or fact.
+Explanation: Explain how the example supports your point.
+
+BODY PARAGRAPH 2
+Main point: Develop a second idea.
+Evidence/example: Give another relevant example.
+Explanation: Connect it directly to the essay question.
+
+BODY PARAGRAPH 3
+Main point: Develop a third idea or consider another perspective.
+Evidence/example: Support the point.
+Explanation: Explain its importance.
+
+CONCLUSION
+Summarise the main ideas without simply repeating every sentence. Give a clear final statement that answers the essay question.
+
+STUDENT CHECKLIST
+✓ Answer the exact question
+✓ Use clear paragraphs
+✓ Explain your points
+✓ Give relevant examples
+✓ Check spelling and grammar
+✓ Stay focused on the topic
+✓ Proofread before submitting`;
+
+  out.innerHTML=`<div class="essay-answer">${guide}</div>`;
+}
+
+function clearStudentAI(){
+  document.getElementById('aiQuestion').value='';
+  document.getElementById('aiAnswer').innerHTML='';
+  document.getElementById('aiSources').innerHTML='';
+}
+
+renderSubjects();setupSelects();loadBookSubjects();loadTestBookSubjects();
+
+setupPaperSubjects();
+</script>
+</body>
+</html>
